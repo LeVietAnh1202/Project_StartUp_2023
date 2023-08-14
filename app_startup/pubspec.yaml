@@ -59,7 +59,12 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/living-room.png
+    - assets/images/living-room-1.png
+    - assets/images/living-room-2.jfif
+    - assets/images/kitchen.jfif
+    - assets/images/bed-room-1.jfif
+    - assets/images/bed-room-2.jfif
+    - assets/images/bed-room-3.jfif
 
   # To add assets to your application, add an assets section, like this:
   # assets:

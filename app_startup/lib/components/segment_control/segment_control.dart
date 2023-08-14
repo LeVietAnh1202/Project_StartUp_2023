@@ -1,6 +1,7 @@
 import 'package:app_startup/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SegmentControl extends StatefulWidget {
   int selectedIndex;
   List<String> items;

@@ -2,10 +2,12 @@ import 'package:app_startup/constants/color_app.dart';
 import 'package:app_startup/constants/string_app.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CardRoom extends StatefulWidget {
   bool isOn;
   String roomName;
   int number;
+  String image;
   double screenWidth = 0;
 
   CardRoom({
@@ -13,6 +15,7 @@ class CardRoom extends StatefulWidget {
     required this.isOn,
     required this.roomName,
     required this.number,
+    required this.image,
   });
 
   @override
@@ -56,7 +59,7 @@ class CardRoomState extends State<CardRoom> {
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(22), topRight: Radius.circular(22)),
             child: Image.asset(
-              'assets/images/living-room.png',
+              widget.image,
               height: 120,
               fit: BoxFit.cover,
             ),
