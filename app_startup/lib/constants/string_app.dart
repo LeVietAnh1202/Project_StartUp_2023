@@ -1,2 +1,2 @@
-const String stateOn = "ON";
-const String stateOff = "OFF";
+const String stateOn = 'ON';
+const String stateOff = 'OFF';

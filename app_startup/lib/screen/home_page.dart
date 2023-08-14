@@ -1,4 +1,5 @@
 import 'package:app_startup/components/card_room/card_room.dart';
+import 'package:app_startup/components/segment_control/segment_control.dart';
 import 'package:app_startup/constants/string_app.dart';
 import 'package:flutter/material.dart';
 
@@ -134,82 +135,13 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Container(height: 20),
-            Container(
-              height: 32,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: const Color(0xFFFBFBFB),
-                border: Border.all(
-                  color: const Color(0xFFEDEDED),
-                  strokeAlign: BorderSide.strokeAlignOutside,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFF000000)
-                        .withOpacity(0.25), // Shadow color
-                    blurRadius: 2, // Spread radius
-                    offset: const Offset(0, 1), // Offset in x and y direction
-                    blurStyle: BlurStyle.normal,
-                  ),
-                  BoxShadow(
-                    color: const Color(0xFF41455D)
-                        .withOpacity(0.25), // Shadow color
-                    blurRadius: 6, // Spread radius
-                    offset: const Offset(0, 2), // Offset in x and y direction
-                    blurStyle: BlurStyle.inner,
-                  ),
-                ],
-              ),
-              child: Row(children: [
-                Flexible(
-                  flex: 1,
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        gradient: const LinearGradient(
-                          colors: [
-                            buttonSegmentControl1,
-                            buttonSegmentControl2
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        )),
-                    child: const Text(
-                      'Room',
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      'Devices',
-                      style: TextStyle(
-                        color: Color(0x33000000),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-              ]),
+            
+            // Segment control
+            SegmentControl(
+              selectedIndex: 0,
+              items: const ['Room', 'Devices'],
             ),
+
             Container(height: 20),
             // Container card rooms
             Flexible(
@@ -237,7 +169,9 @@ class HomePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: CardRoom(
-                                      state: stateOn,
+                                      isOn: true,
+                                      roomName: 'Living room',
+                                      number: 5,
                                     ),
                                   ),
                                   Container(
@@ -246,8 +180,9 @@ class HomePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: CardRoom(
-                                      state: stateOff,
-                                    ),
+                                        isOn: false,
+                                        roomName: 'Living room',
+                                        number: 5),
                                   ),
                                 ],
                               ),
@@ -261,7 +196,9 @@ class HomePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: CardRoom(
-                                      state: stateOn,
+                                      isOn: true,
+                                      roomName: 'Living room',
+                                      number: 5,
                                     ),
                                   ),
                                   Container(
@@ -270,8 +207,9 @@ class HomePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: CardRoom(
-                                      state: stateOff,
-                                    ),
+                                        isOn: false,
+                                        roomName: 'Living room',
+                                        number: 5),
                                   ),
                                 ],
                               ),
@@ -285,7 +223,9 @@ class HomePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: CardRoom(
-                                      state: stateOn,
+                                      isOn: true,
+                                      roomName: 'Living room',
+                                      number: 5,
                                     ),
                                   ),
                                   Container(
@@ -294,8 +234,9 @@ class HomePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: CardRoom(
-                                      state: stateOff,
-                                    ),
+                                        isOn: false,
+                                        roomName: 'Living room',
+                                        number: 5),
                                   ),
                                 ],
                               ),
