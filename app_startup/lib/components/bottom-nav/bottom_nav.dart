@@ -1,10 +1,12 @@
+import 'package:app_startup/constants/color_app.dart';
 import 'package:flutter/material.dart';
+
 
 class BottomNav extends StatefulWidget {
   final int selectedIndex;
   final ValueChanged<int> incrementCounter;
 
-  const BottomNav({
+  const BottomNav({super.key, 
     required this.selectedIndex,
     required this.incrementCounter,
   });
@@ -18,8 +20,8 @@ class BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       // selectedFontSize: 14,
-      // selectedIconTheme: const IconThemeData(color: Colors.amberAccent, size: 40),
-      selectedItemColor: const Color(0xFF1a7d5a),
+      selectedIconTheme: const IconThemeData(color: greenDark, size: 30),
+      selectedItemColor: greenDark,
       // selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
