@@ -65,6 +65,8 @@ flutter:
     - assets/images/bed-room-1.jfif
     - assets/images/bed-room-2.jfif
     - assets/images/bed-room-3.jfif
+    - assets/images/Bo-giam-sat.jpg
+    - assets/images/o-cam.webp
 
   # To add assets to your application, add an assets section, like this:
   # assets:

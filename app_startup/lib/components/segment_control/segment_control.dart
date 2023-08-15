@@ -49,20 +49,7 @@ class SegmentControlState extends State<SegmentControl> {
           color: const Color(0xFFEDEDED),
           strokeAlign: BorderSide.strokeAlignOutside,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF000000).withOpacity(0.25), // Shadow color
-            blurRadius: 2, // Spread radius
-            offset: const Offset(0, 1), // Offset in x and y direction
-            blurStyle: BlurStyle.normal,
-          ),
-          BoxShadow(
-            color: const Color(0xFF41455D).withOpacity(0.25), // Shadow color
-            blurRadius: 6, // Spread radius
-            offset: const Offset(0, 2), // Offset in x and y direction
-            blurStyle: BlurStyle.inner,
-          ),
-        ],
+        boxShadow: [segmentControlBoxShadow1, segmentControlBoxShadow2],
       ),
       child: Row(children: [
         for (int i = 0; i < widget.items.length; i++)

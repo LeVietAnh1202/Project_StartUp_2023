@@ -2,8 +2,11 @@ import 'package:app_startup/components/devices/monitoringUnit/monitoringUnit.dar
 import 'package:app_startup/components/devices/socket/socket.dart';
 import 'package:flutter/material.dart';
 
-class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+// ignore: must_be_immutable
+class ViewListDevicesPage extends StatelessWidget {
+  String roomName;
+
+  ViewListDevicesPage({super.key, required this.roomName});
 
   // This widget is the root of your application.
   @override
@@ -11,9 +14,9 @@ class SettingPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(
-          "Setting Page",
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          roomName,
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
@@ -21,7 +24,6 @@ class SettingPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         color: Colors.yellow,
         height: double.infinity,
-
         child: Expanded(
           child: ScrollConfiguration(
             behavior:
