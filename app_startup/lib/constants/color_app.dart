@@ -11,6 +11,7 @@ const Color buildingName2 = Color(0xA4F9D423);
 const Color blueLight = Color(0xFFB2DDFF);
 const Color bodyBgContainer = Color(0xFFFFF9E8);
 const Color cardRoomBg = Color(0xFFF9F9F9);
+const Color deviceBg = Color(0xFFF9F9F9);
 const Color numberDevicesCl = Color(0xFF979797);
 const Color switchOnOffBg1 = Color(0xFFC9CED7);
 const Color switchOnOffBg2 = Color(0xFFE1E8F1);
@@ -20,6 +21,9 @@ const Color switchOffBg1 = Color(0xFFA31616);
 const Color switchOffBg2 = Color(0xFFFDE1E1);
 const Color buttonSegmentControl1 = Color(0xFF29B583);
 const Color buttonSegmentControl2 = greenDark;
+const Color grayBackground = Color.fromRGBO(0, 0, 0, .03);
+Color appBarColor= greenDark.withOpacity(0.25);
+
 
 BoxShadow customBoxShadow = BoxShadow(
   color: const Color(0xFF3B4D56).withOpacity(0.16),

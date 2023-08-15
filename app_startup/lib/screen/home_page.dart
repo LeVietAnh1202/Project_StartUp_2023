@@ -1,13 +1,41 @@
 import 'package:app_startup/components/card_room/card_room.dart';
+import 'package:app_startup/components/devices/monitoringUnit/monitoringUnit.dart';
 import 'package:app_startup/components/segment_control/segment_control.dart';
+import 'package:app_startup/models/card_rooms.dart';
+import 'package:app_startup/screen/view_list_devices.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_startup/constants/color_app.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+// ignore: must_be_immutable
+class HomePage extends StatefulWidget {  
+  final int initialSegmentControlIndex;
 
+  const HomePage({
+    Key? key,
+    this.initialSegmentControlIndex = 0,
+  }) : super(key: key);
+
+  @override
+  State<HomePage> createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
   // This widget is the root of your application.
+  late int segmentControlIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    segmentControlIndex = widget.initialSegmentControlIndex;
+  }
+
+   void _setSegmentControlIndex(int index) {
+    setState(() {
+      segmentControlIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // double screenWidth = MediaQuery.of(context).size.width;
@@ -15,45 +43,8 @@ class HomePage extends StatelessWidget {
     // double baseWidth = 443;
     // double fem = MediaQuery.of(context).size.width / baseWidth;
     // double ffem = fem * 0.97;
-
-    List<CardRoom> cardRooms = [
-      CardRoom(
-        isOn: true,
-        roomName: 'Living room 1',
-        number: 5,
-        image: 'assets/images/living-room-1.png',
-      ),
-      CardRoom(
-        isOn: false,
-        roomName: 'Bed room 1',
-        number: 2,
-        image: 'assets/images/bed-room-1.jfif',
-      ),
-      CardRoom(
-        isOn: true,
-        roomName: 'Kitchen room',
-        number: 6,
-        image: 'assets/images/kitchen.jfif',
-      ),
-      CardRoom(
-        isOn: false,
-        roomName: 'Bed room 2',
-        number: 5,
-        image: 'assets/images/bed-room-2.jfif',
-      ),
-      CardRoom(
-        isOn: true,
-        roomName: 'Bed room 3',
-        number: 5,
-        image: 'assets/images/bed-room-3.jfif',
-      ),
-      CardRoom(
-        isOn: false,
-        roomName: 'Living room 2',
-        number: 5,
-        image: 'assets/images/living-room-2.jfif',
-      ),
-    ];
+ 
+    List<CardRoom> cardRooms = CardRoomsModel().getCardRooms;
 
     List<Widget> cardRoomsWidget = [];
     int rowNumber = (cardRooms.length / 2).ceil();
@@ -81,7 +72,8 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: appBarColor,
         title: const Text(
           "Home Page",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -198,8 +190,9 @@ class HomePage extends StatelessWidget {
 
             // Segment control
             SegmentControl(
-              selectedIndex: 0,
+              selectedIndex: segmentControlIndex,
               items: const ['Room', 'Devices'],
+              getSelectedIndex: _setSegmentControlIndex,
             ),
 
             Container(height: 20),
@@ -208,12 +201,13 @@ class HomePage extends StatelessWidget {
               flex: 12,
               child: Container(
                 width: double.infinity,
+                height: double.infinity,
                 decoration: BoxDecoration(
                   color: bodyBgContainer,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(10),
                   child: Expanded(
                     child: ScrollConfiguration(
                       behavior: ScrollConfiguration.of(context)
@@ -222,7 +216,24 @@ class HomePage extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         child: Padding(
                           padding: const EdgeInsets.all(7),
-                          child: Column(children: cardRoomsWidget),
+                          // child: Column(children: cardRoomsWidget),
+                          child: Column(
+                            children: segmentControlIndex == 0
+                                ? cardRoomsWidget
+                                : [
+                                    MonitoringUnitPage(isOn: true),
+                                    Container(height: 15),
+                                    MonitoringUnitPage(isOn: true),
+                                    Container(height: 15),
+                                    MonitoringUnitPage(isOn: true),
+                                    Container(height: 15),
+                                    MonitoringUnitPage(isOn: true),
+                                    Container(height: 15),
+                                    MonitoringUnitPage(isOn: true),
+                                    Container(height: 15),
+                                    MonitoringUnitPage(isOn: true),
+                                  ],
+                          ),
                         ),
                       ),
                     ),

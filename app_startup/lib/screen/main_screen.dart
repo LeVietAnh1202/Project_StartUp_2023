@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     ManagerPage(),
   ];
 
-  int _selectedIndex = 3;
+  int _selectedIndex = 0;
 
   void _changeSelectedIndex(int index) {
     setState(() {
@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pageList[_selectedIndex],
-      bottomNavigationBar: BottomNav(selectedIndex: _selectedIndex, incrementCounter: _changeSelectedIndex),
+      bottomNavigationBar: BottomNav(selectedIndex: _selectedIndex, changeSelectedIndex: _changeSelectedIndex),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:app_startup/components/devices/monitoringUnit/monitoringUnit.dart';
 import 'package:app_startup/components/devices/socket/socket.dart';
+import 'package:app_startup/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -13,16 +14,16 @@ class ViewListDevicesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: appBarColor,
         title: Text(
           roomName,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(color: darkText, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        color: Colors.yellow,
+        color: grayBackground,
         height: double.infinity,
         child: Expanded(
           child: ScrollConfiguration(
@@ -38,19 +39,19 @@ class ViewListDevicesPage extends StatelessWidget {
                       isOn: true,
                     ),
                     Container(
-                      height: 15,
+                      height: 20,
                     ),
                     SocketPage(isOn: true),
                     Container(
-                      height: 15,
+                      height: 20,
                     ),
                     SocketPage(isOn: true),
                     Container(
-                      height: 15,
+                      height: 20,
                     ),
                     SocketPage(isOn: true),
                     Container(
-                      height: 15,
+                      height: 20,
                     ),
                     SocketPage(isOn: true),
                   ],

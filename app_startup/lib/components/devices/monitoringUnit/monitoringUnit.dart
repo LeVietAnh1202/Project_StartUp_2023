@@ -13,7 +13,7 @@ class MonitoringUnitPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: cardRoomBg,
+        color: deviceBg,
         border: Border.all(
           color: const Color(0x80FFFFFF), // Stroke color
           width: 1, // Stroke width

@@ -1,3 +1,4 @@
+import 'package:app_startup/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -8,8 +9,11 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Notification Page"),
+        backgroundColor: appBarColor,
+        title: const Text(
+          "Notification Page",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: const Text('Notification page'),
     );

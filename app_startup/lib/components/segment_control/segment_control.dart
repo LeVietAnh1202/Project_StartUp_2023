@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class SegmentControl extends StatefulWidget {
   int selectedIndex;
   List<String> items;
+  final ValueChanged<int> getSelectedIndex;
 
   SegmentControl({
     super.key,
     required this.selectedIndex,
     required this.items,
+    required this.getSelectedIndex,
   });
 
   @override
@@ -35,6 +37,7 @@ class SegmentControlState extends State<SegmentControl> {
   void _changeSelectedIndex(int index) {
     setState(() {
       widget.selectedIndex = index;
+      widget.getSelectedIndex(index);
     });
   }
 

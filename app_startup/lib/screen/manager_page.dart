@@ -1,3 +1,4 @@
+import 'package:app_startup/constants/color_app.dart';
 import 'package:flutter/material.dart';
 
 class ManagerPage extends StatelessWidget {
@@ -10,8 +11,11 @@ class ManagerPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Manager Page"),
+        backgroundColor: appBarColor,
+        title: const Text(
+          "Manager Page",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: Center(
           child: Column(

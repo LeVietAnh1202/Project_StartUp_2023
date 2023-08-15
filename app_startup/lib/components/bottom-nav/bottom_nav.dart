@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
   final int selectedIndex;
-  final ValueChanged<int> incrementCounter;
+  final ValueChanged<int> changeSelectedIndex;
 
   const BottomNav({super.key, 
     required this.selectedIndex,
-    required this.incrementCounter,
+    required this.changeSelectedIndex,
   });
 
   @override
@@ -43,7 +43,7 @@ class BottomNavState extends State<BottomNav> {
         ),
       ],
       currentIndex: widget.selectedIndex,
-      onTap: widget.incrementCounter,
+      onTap: widget.changeSelectedIndex,
     );
   }
 }
