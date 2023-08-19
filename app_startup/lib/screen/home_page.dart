@@ -2,7 +2,6 @@ import 'package:app_startup/components/card_room/card_room.dart';
 import 'package:app_startup/components/devices/monitoringUnit/monitoringUnit.dart';
 import 'package:app_startup/components/segment_control/segment_control.dart';
 import 'package:app_startup/models/card_rooms.dart';
-import 'package:app_startup/screen/view_list_devices.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_startup/constants/color_app.dart';

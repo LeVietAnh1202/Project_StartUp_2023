@@ -1,9 +1,7 @@
-import 'package:app_startup/constants/color_app.dart';
-import 'package:app_startup/constants/string_app.dart';
 import 'package:flutter/material.dart';
 
 class FormExample extends StatefulWidget {
-  FormExample({
+  const FormExample({
     super.key,
   });
 

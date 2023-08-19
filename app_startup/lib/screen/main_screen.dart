@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     ManagerPage(),
   ];
 
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   void _changeSelectedIndex(int index) {
     setState(() {
