@@ -15,14 +15,14 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> pageList = const <Widget>[
-    HomePage(),
-    SettingPage(),
-    NotificationPage(),
+  List<Widget> pageList = <Widget>[
+    const HomePage(),
+    const SettingPage(),
+    const NotificationPage(),
     ManagerPage(),
   ];
 
-  int _selectedIndex = 1;
+  int _selectedIndex = 3;
 
   void _changeSelectedIndex(int index) {
     setState(() {

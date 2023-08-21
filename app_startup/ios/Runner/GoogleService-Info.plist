@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>729318081419-lmeeub2r09etuv6so8dcb8ufedbrd6gb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.729318081419-lmeeub2r09etuv6so8dcb8ufedbrd6gb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAO9fB4vLOVhg9PKDxzoFWdaJ5n0lfcieE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>729318081419</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.appStartup</string>
+	<key>PROJECT_ID</key>
+	<string>startup2023-e6d76</string>
+	<key>STORAGE_BUCKET</key>
+	<string>startup2023-e6d76.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:729318081419:ios:d675843871c40018c5a58e</string>
+	<key>DATABASE_URL</key>
+	<string>https://startup2023-e6d76-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
