@@ -1,39 +1,38 @@
 // import 'dart:ffi';
 
 import 'package:app_startup/constants/color_app.dart';
-import 'package:app_startup/constants/string_app.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 // ignore: must_be_immutable
-class ManagerPage extends StatefulWidget {
+class TestReadWriteFirebasePage extends StatefulWidget {
   num wordsReceived;
-  num wordsSent = 220.5;
+  num wordsSent= 220.5;
   // final ValueChanged<int> changeSelectedIndex;
 
-  ManagerPage({
+  TestReadWriteFirebasePage({
     super.key,
-    this.wordsReceived = 0,
+    this.wordsReceived = 230.5,
     // required this.changeSelectedIndex,
   });
 
   @override
-  State<ManagerPage> createState() => ManagerPageState();
+  State<TestReadWriteFirebasePage> createState() => TestReadWriteFirebasePageState();
 }
 
-class ManagerPageState extends State<ManagerPage> {
+class TestReadWriteFirebasePageState extends State<TestReadWriteFirebasePage> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     FirebaseDatabase database = FirebaseDatabase.instance;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
 
-    DatabaseReference starCountRef = database.ref('${historyMonitor1Path}2023/8/16/23/43/');
+    DatabaseReference starCountRef = database.ref('Flutter/voltage');
     starCountRef.onValue.listen((DatabaseEvent event) {
-      final Map<dynamic, dynamic> data = event.snapshot.value as Map<dynamic, dynamic>;
+      final num data = event.snapshot.value as num;
       setState(() {
-        // widget.wordsReceived = data;
-        print(data);
+        widget.wordsReceived = data;
+        print(data.toString());
       });
     });
 
@@ -41,7 +40,7 @@ class ManagerPageState extends State<ManagerPage> {
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: const Text(
-          "Manager Page",
+          "TestReadWriteFirebase Page",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

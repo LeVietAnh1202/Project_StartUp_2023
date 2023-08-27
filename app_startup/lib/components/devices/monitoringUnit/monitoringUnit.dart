@@ -22,136 +22,141 @@ class MonitoringUnitPage extends StatelessWidget {
         boxShadow: [customBoxShadow],
       ),
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
       alignment: Alignment.topLeft,
       child: Column(
         children: [
-          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Flexible(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFFFFFFFF),
-                  ),
-                  width: double.infinity,
-                  child: ClipRRect(
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Flexible(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        'assets/images/Bo-giam-sat.jpg',
-                      )),
-                )),
-            Flexible(
-                flex: 4,
-                child: Container(
-                  margin: const EdgeInsets.only(left: 20, right: 20),
-                  child: Column(
-                    children: [
-                      Container(
-                          alignment: Alignment.topCenter,
-                          width: double.infinity,
-                          child: const Text(
-                            'Monitoring Unit',
-                            style: TextStyle(
-                                color: darkText,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          )),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                              margin: const EdgeInsets.only(top: 10),
-                              child: CustomSwitch(isOn: isOn)),
-                          Container(
-                            margin: const EdgeInsets.only(top: 10),
+                      color: const Color(0xFFFFFFFF),
+                    ),
+                    width: double.infinity,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          'assets/images/Bo-giam-sat.jpg',
+                        )),
+                  )),
+              Flexible(
+                  flex: 4,
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 20, right: 20),
+                    child: Column(
+                      children: [
+                        Container(
                             alignment: Alignment.topCenter,
-                            child: const Column(children: [
-                              Text(
-                                "3.2 kWh",
-                                style: TextStyle(
-                                    color: darkText,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "Số điện",
-                                style: TextStyle(fontSize: 14),
-                              ),
-                            ]),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                )),
-          ]),
+                            width: double.infinity,
+                            child: const Text(
+                              'Monitoring Unit',
+                              style: TextStyle(
+                                  color: darkText,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                margin: const EdgeInsets.only(top: 10),
+                                child: CustomSwitch(isOn: isOn)),
+                            Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              alignment: Alignment.topCenter,
+                              child: const Column(children: [
+                                Text(
+                                  "3.2",
+                                  style: TextStyle(
+                                      color: darkText,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "Số điện (kWh)",
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ]),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  )),
+            ]),
+          ),
           Container(
             height: 20,
           ),
-          Row(
-            children: [
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.topCenter,
-                  child: const Column(children: [
-                    Text(
-                      "223.55 V",
-                      style: TextStyle(
-                          color: darkText,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Điện áp",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ]),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.topCenter,
+                    child: const Column(children: [
+                      Text(
+                        "223.55",
+                        style: TextStyle(
+                            color: darkText,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "Điện áp (V)",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ]),
+                  ),
                 ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.topCenter,
-                  child: const Column(children: [
-                    Text(
-                      "500.06 W",
-                      style: TextStyle(
-                          color: darkText,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Công suất",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ]),
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.topCenter,
+                    child: const Column(children: [
+                      Text(
+                        "500.06",
+                        style: TextStyle(
+                            color: darkText,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "Công suất (W)",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ]),
+                  ),
                 ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.topCenter,
-                  child: const Column(children: [
-                    Text(
-                      "8.01 A",
-                      style: TextStyle(
-                          color: darkText,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Dòng",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ]),
+                Flexible(
+                  flex: 1,
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.topCenter,
+                    child: const Column(children: [
+                      Text(
+                        "8.01",
+                        style: TextStyle(
+                            color: darkText,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "Dòng (A)",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ]),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

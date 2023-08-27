@@ -1,0 +1,9 @@
+V5: Xếp lại các jack thành 1 cột
+V6: sửa vị trí led báo của relay
+V7: đổi chỗ relay và các terminal 220V
+
+
+VT (Voltage Transformers): máy biến điện áp
+LOAD: tải
+L: dây nóng (dây lửa)
+N: dây nguội (dây trung tính)

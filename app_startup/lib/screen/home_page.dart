@@ -82,108 +82,106 @@ class HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            Flexible(
-              flex: 2,
-              child: Column(
-                children: [
-                  Row(
-                    children: <Widget>[
-                      Flexible(
-                        flex: 2,
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: const LinearGradient(
-                                  colors: [buildingName1, buildingName2],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
-                              ),
-                              height: 63,
-                              child: const Padding(
-                                padding: EdgeInsets.all(5),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.vertical,
-                                        child: Text(
-                                          "Building name (My home)",
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                    // Spacer(),
-                                    Icon(Icons.expand_more_outlined),
-                                  ],
-                                ),
+            Column(
+              children: [
+                Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 45,
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: const LinearGradient(
+                                colors: [buildingName1, buildingName2],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
                               ),
                             ),
-                            Container(
-                              height: 5,
-                            ),
-                            Container(
-                              height: 32,
-                              decoration: BoxDecoration(
-                                color: blueLight,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(5),
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      "Add device",
+                            height: 63,
+                            child: const Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Flex(
+                                direction: Axis.horizontal,
+                                children: [
+                                  Expanded(
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.vertical,
+                                    child: Text(
+                                      "Building name (My home)",
                                       style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                       textAlign: TextAlign.center,
                                     ),
-                                    const Spacer(),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                      child: Container(
-                                          height: 18,
-                                          width: 18,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color(0xFF87A1E3),
-                                          ),
-                                          child: const Icon(
-                                            Icons.add,
-                                            size: 14,
-                                            color: Color(0xFFFFFFFF),
-                                          )),
+                                  ),
                                     ),
-                                  ],
-                                ),
+                                  // Spacer(),
+                                  Icon(Icons.expand_more_outlined),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      Container(width: 5),
-                      Flexible(
-                          flex: 3,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              'assets/images/living-room-1.png',
-                              width: double.infinity,
-                              height: 100,
-                              fit: BoxFit.cover,
+                          ),
+                          Container(
+                            height: 5,
+                          ),
+                          Container(
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: blueLight,
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                          )),
-                    ],
-                  ),
-                ],
-              ),
+                            child: Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Row(
+                                children: [
+                                  const Text(
+                                    "Add device",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const Spacer(),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                    child: Container(
+                                        height: 18,
+                                        width: 18,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Color(0xFF87A1E3),
+                                        ),
+                                        child: const Icon(
+                                          Icons.add,
+                                          size: 14,
+                                          color: Color(0xFFFFFFFF),
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(width: 5),
+                    Flexible(
+                        flex: 55,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            'assets/images/living-room-1.png',
+                            width: double.infinity,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        )),
+                  ],
+                ),
+              ],
             ),
             Container(height: 20),
 
@@ -207,35 +205,40 @@ class HomePageState extends State<HomePage> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(10),
-                  child: Expanded(
-                    child: ScrollConfiguration(
-                      behavior: ScrollConfiguration.of(context)
-                          .copyWith(scrollbars: false),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Padding(
-                          padding: const EdgeInsets.all(7),
-                          // child: Column(children: cardRoomsWidget),
-                          child: Column(
-                            children: segmentControlIndex == 0
-                                ? cardRoomsWidget
-                                : [
-                                    MonitoringUnitPage(isOn: true),
-                                    Container(height: 15),
-                                    MonitoringUnitPage(isOn: true),
-                                    Container(height: 15),
-                                    MonitoringUnitPage(isOn: true),
-                                    Container(height: 15),
-                                    MonitoringUnitPage(isOn: true),
-                                    Container(height: 15),
-                                    MonitoringUnitPage(isOn: true),
-                                    Container(height: 15),
-                                    MonitoringUnitPage(isOn: true),
-                                  ],
+                  child: Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      Expanded(
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(context)
+                            .copyWith(scrollbars: false),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Padding(
+                            padding: const EdgeInsets.all(7),
+                            // child: Column(children: cardRoomsWidget),
+                            child: Column(
+                              children: segmentControlIndex == 0
+                                  ? cardRoomsWidget
+                                  : [
+                                      MonitoringUnitPage(isOn: true),
+                                      Container(height: 15),
+                                      MonitoringUnitPage(isOn: true),
+                                      Container(height: 15),
+                                      MonitoringUnitPage(isOn: true),
+                                      Container(height: 15),
+                                      MonitoringUnitPage(isOn: true),
+                                      Container(height: 15),
+                                      MonitoringUnitPage(isOn: true),
+                                      Container(height: 15),
+                                      MonitoringUnitPage(isOn: true),
+                                    ],
+                            ),
                           ),
                         ),
                       ),
                     ),
+                    ] 
                   ),
                 ),
               ),
