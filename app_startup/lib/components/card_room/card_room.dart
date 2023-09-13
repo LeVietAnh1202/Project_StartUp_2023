@@ -37,6 +37,12 @@ class CardRoomState extends State<CardRoom> {
     });
   }
 
+  void _changeState() {
+    setState(() {
+      widget.isOn = !widget.isOn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     widget.screenWidth = MediaQuery.of(context).size.width;
@@ -92,7 +98,11 @@ class CardRoomState extends State<CardRoom> {
                   Text(widget.isOn ? stateOn : stateOff,
                       style: const TextStyle(
                           height: 2, fontWeight: FontWeight.bold, fontSize: 14)),
-                  CustomSwitch(isOn: widget.isOn),
+                  CustomSwitch(isOn: widget.isOn, changeStateOnOff: (value) {
+                    setState(() {
+                      widget.isOn = value;
+                    });
+                  },),
                 ],
               ),
             ),

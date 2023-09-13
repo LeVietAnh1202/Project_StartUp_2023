@@ -1,0 +1,247 @@
+{
+	"color": "Black on White",
+	"pageSet": "paged",
+	"needMenu": true,
+	"needAnnot": false,
+	"onlyShowStroke": false,
+	"fileType": "filePdf",
+	"layer": [
+		{
+			"layerId": 1,
+			"isMirror": false,
+			"transparency": 80,
+			"pageNo": 1
+		},
+		{
+			"layerId": 3,
+			"isMirror": false,
+			"transparency": 0,
+			"pageNo": 1
+		},
+		{
+			"layerId": 11,
+			"isMirror": false,
+			"transparency": 0,
+			"pageNo": 1
+		},
+		{
+			"layerId": 47,
+			"isMirror": false,
+			"transparency": 0,
+			"pageNo": 1
+		},
+		{
+			"layerId": 2,
+			"isMirror": true,
+			"transparency": 0,
+			"pageNo": 2
+		},
+		{
+			"layerId": 11,
+			"isMirror": false,
+			"transparency": 0,
+			"pageNo": 2
+		},
+		{
+			"layerId": 47,
+			"isMirror": true,
+			"transparency": 0,
+			"pageNo": 2
+		},
+		{
+			"layerId": 11,
+			"isMirror": false,
+			"transparency": 0,
+			"pageNo": 3
+		},
+		{
+			"layerId": 47,
+			"isMirror": false,
+			"transparency": 70,
+			"pageNo": 3
+		},
+		{
+			"layerId": 56,
+			"isMirror": false,
+			"transparency": 0,
+			"pageNo": 3
+		}
+	],
+	"fileName": "PCB_1-PCB_PCB_StartUp_0.254_2_2023-09-01",
+	"language": "en",
+	"customPage": [
+		{
+			"object": [
+				"TopPad",
+				"BottomPad",
+				"MultiPad",
+				"Via",
+				"PadDrill",
+				"ViaDrill",
+				"Track",
+				"Text",
+				"Image",
+				"Dimension",
+				"BoardOutline",
+				"BoardCutout",
+				"CopperOutline",
+				"CopperFilled",
+				"TearDrop",
+				"SolidRegion",
+				"ProhibitedRegion",
+				"FPCStiffener",
+				"Line",
+				"PlaneZone",
+				"ComponentProperty",
+				"ComponentSilkscreen",
+				"Shell_Outline",
+				"Shell_ScrewPillar",
+				"Shell_SideDatumLine",
+				"Shell_SideSlotRegion",
+				"Shell_TopBottomSlotRegion",
+				"Shell_SideEntity",
+				"Shell_TopBottomEntity"
+			],
+			"layer": [
+				{
+					"layerId": 1,
+					"isMirror": false,
+					"transparency": 80,
+					"pageNo": 1
+				},
+				{
+					"layerId": 3,
+					"isMirror": false,
+					"transparency": 0,
+					"pageNo": 1
+				},
+				{
+					"layerId": 11,
+					"isMirror": false,
+					"transparency": 0,
+					"pageNo": 1
+				},
+				{
+					"layerId": 47,
+					"isMirror": false,
+					"transparency": 0,
+					"pageNo": 1
+				}
+			],
+			"name": "Top Assembly Drawings",
+			"pageNo": 1,
+			"checked": true
+		},
+		{
+			"object": [
+				"TopPad",
+				"BottomPad",
+				"MultiPad",
+				"Via",
+				"PadDrill",
+				"ViaDrill",
+				"Track",
+				"Text",
+				"Image",
+				"Dimension",
+				"BoardOutline",
+				"BoardCutout",
+				"CopperFilled",
+				"TearDrop",
+				"SolidRegion",
+				"ProhibitedRegion",
+				"FPCStiffener",
+				"Line",
+				"PlaneZone",
+				"ComponentProperty",
+				"ComponentSilkscreen",
+				"Shell_Outline",
+				"Shell_ScrewPillar",
+				"Shell_SideDatumLine",
+				"Shell_SideSlotRegion",
+				"Shell_TopBottomSlotRegion",
+				"Shell_SideEntity",
+				"Shell_TopBottomEntity"
+			],
+			"layer": [
+				{
+					"layerId": 2,
+					"isMirror": true,
+					"transparency": 0,
+					"pageNo": 2
+				},
+				{
+					"layerId": 11,
+					"isMirror": false,
+					"transparency": 0,
+					"pageNo": 2
+				},
+				{
+					"layerId": 47,
+					"isMirror": true,
+					"transparency": 0,
+					"pageNo": 2
+				}
+			],
+			"name": "Bottom Assembly Drawings",
+			"pageNo": 2,
+			"checked": true
+		},
+		{
+			"object": [
+				"TopPad",
+				"BottomPad",
+				"MultiPad",
+				"Via",
+				"PadDrill",
+				"ViaDrill",
+				"Track",
+				"Text",
+				"Image",
+				"Dimension",
+				"BoardOutline",
+				"BoardCutout",
+				"CopperOutline",
+				"CopperFilled",
+				"TearDrop",
+				"SolidRegion",
+				"ProhibitedRegion",
+				"FPCStiffener",
+				"Line",
+				"PlaneZone",
+				"ComponentProperty",
+				"ComponentSilkscreen",
+				"Shell_Outline",
+				"Shell_ScrewPillar",
+				"Shell_SideDatumLine",
+				"Shell_SideSlotRegion",
+				"Shell_TopBottomSlotRegion",
+				"Shell_SideEntity",
+				"Shell_TopBottomEntity"
+			],
+			"layer": [
+				{
+					"layerId": 11,
+					"isMirror": false,
+					"transparency": 0,
+					"pageNo": 3
+				},
+				{
+					"layerId": 47,
+					"isMirror": false,
+					"transparency": 70,
+					"pageNo": 3
+				},
+				{
+					"layerId": 56,
+					"isMirror": false,
+					"transparency": 0,
+					"pageNo": 3
+				}
+			],
+			"name": "Drill Drawing",
+			"pageNo": 3,
+			"checked": true
+		}
+	]
+}

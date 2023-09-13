@@ -1,6 +1,10 @@
 V5: Xếp lại các jack thành 1 cột
 V6: sửa vị trí led báo của relay
 V7: đổi chỗ relay và các terminal 220V
+V8: (V6) bỏ OUT 5V, OUT 3.3V, GND
+V9: (V8) thay đổi vị trí link kiện, đổi chân điều khiển relay D6 => D5
+V11: (V10) thêm lại OUT 5V, OUT 3.3V, GND
+V12: (V11) giãn khoảng cách giữa các jack
 
 
 VT (Voltage Transformers): máy biến điện áp

@@ -25,32 +25,20 @@ class ViewListDevicesPage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         color: grayBackground,
         height: double.infinity,
-        child: Expanded(
+        // child: Expanded(
           child: ScrollConfiguration(
             behavior:
                 ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Padding(
-                padding: const EdgeInsets.all(7),
+                padding: const EdgeInsets.all(0.0),
                 child: Column(
                   children: [
                     MonitoringUnitPage(
                       isOn: true,
                     ),
-                    Container(
-                      height: 20,
-                    ),
-                    SocketPage(isOn: true),
-                    Container(
-                      height: 20,
-                    ),
-                    SocketPage(isOn: true),
-                    Container(
-                      height: 20,
-                    ),
-                    SocketPage(isOn: true),
-                    Container(
+                    const SizedBox(
                       height: 20,
                     ),
                     SocketPage(isOn: true),
@@ -59,7 +47,7 @@ class ViewListDevicesPage extends StatelessWidget {
               ),
             ),
           ),
-        ),
+        // ),
       ),
     );
   }

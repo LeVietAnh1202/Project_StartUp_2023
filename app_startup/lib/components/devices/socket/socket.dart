@@ -21,7 +21,7 @@ class SocketPage extends StatelessWidget {
         ),
         boxShadow: [customBoxShadow],
       ),
-      width: double.infinity,
+      // width: double.infinity,
       padding: const EdgeInsets.all(20),
       alignment: Alignment.topLeft,
       child: Column(
@@ -62,20 +62,23 @@ class SocketPage extends StatelessWidget {
                         children: [
                           Container(
                               margin: const EdgeInsets.only(top: 10),
-                              child: CustomSwitch(isOn: isOn)),
+                              child: CustomSwitch(
+                                isOn: isOn,
+                                changeStateOnOff: (value) {},
+                              )),
                           Container(
                             margin: const EdgeInsets.only(top: 10),
                             alignment: Alignment.topCenter,
                             child: const Column(children: [
                               Text(
-                                "3.2 kWh",
+                                "3.2",
                                 style: TextStyle(
                                     color: darkText,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                "Số điện",
+                                "Số điện (kWh)",
                                 style: TextStyle(fontSize: 14),
                               ),
                             ]),
@@ -90,66 +93,55 @@ class SocketPage extends StatelessWidget {
             height: 20,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.topCenter,
-                  child: const Column(children: [
-                    Text(
-                      "223.55 V",
-                      style: TextStyle(
-                          color: darkText,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Điện áp",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ]),
-                ),
+              Container(
+                alignment: Alignment.topCenter,
+                child: const Column(children: [
+                  Text(
+                    "223.55",
+                    style: TextStyle(
+                        color: darkText,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Điện áp (V)",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ]),
               ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.topCenter,
-                  child: const Column(children: [
-                    Text(
-                      "500.06 W",
-                      style: TextStyle(
-                          color: darkText,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Công suất",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ]),
-                ),
+              Container(
+                alignment: Alignment.topCenter,
+                child: const Column(children: [
+                  Text(
+                    "500.06",
+                    style: TextStyle(
+                        color: darkText,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Công suất (W)",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ]),
               ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.topCenter,
-                  child: const Column(children: [
-                    Text(
-                      "8.01 A",
-                      style: TextStyle(
-                          color: darkText,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Dòng",
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ]),
-                ),
+              Container(
+                alignment: Alignment.topCenter,
+                child: const Column(children: [
+                  Text(
+                    "8.01",
+                    style: TextStyle(
+                        color: darkText,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Dòng (A)",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ]),
               ),
             ],
           ),

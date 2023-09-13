@@ -445,7 +445,7 @@ class SignUp extends StatelessWidget {
                                           width: 129*fem,
                                           height: 21.64*fem,
                                           child: Container(
-                                            decoration: BoxDecoration (
+                                            decoration: const BoxDecoration (
                                               color: Color(0xffffffff),
                                             ),
                                           ),
@@ -498,7 +498,7 @@ class SignUp extends StatelessWidget {
                                         fontWeight: FontWeight.w400,
                                         height: 4.2857142857*ffem/fem,
                                         letterSpacing: 1.4*fem,
-                                        color: Color(0xaf1a7d5a),
+                                        color: const Color(0xaf1a7d5a),
                                       ),
                                     ),
                                   ),
@@ -532,7 +532,7 @@ class SignUp extends StatelessWidget {
                       // fieldcontainervariant4DrR (207:70)
                       left: 79*fem,
                       top: 340*fem,
-                      child: Container(
+                      child: SizedBox(
                         width: 285*fem,
                         height: 60*fem,
                         child: Stack(
@@ -572,7 +572,7 @@ class SignUp extends StatelessWidget {
                                         fontWeight: FontWeight.w700,
                                         height: 3*ffem/fem,
                                         letterSpacing: 1*fem,
-                                        color: Color(0xffffffff),
+                                        color: const Color(0xffffffff),
                                       ),
                                     ),
                                   ),
@@ -592,7 +592,7 @@ class SignUp extends StatelessWidget {
                           width: 330*fem,
                           height: 1*fem,
                           child: Container(
-                            decoration: BoxDecoration (
+                            decoration: const BoxDecoration (
                               color: greenDark,
                             ),
                           ),
@@ -744,7 +744,7 @@ class SignUp extends StatelessWidget {
                           width: 98*fem,
                           height: 2*fem,
                           child: Container(
-                            decoration: BoxDecoration (
+                            decoration: const BoxDecoration (
                               color: greenDark,
                             ),
                           ),

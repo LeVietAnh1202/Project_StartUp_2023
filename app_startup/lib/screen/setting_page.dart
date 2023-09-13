@@ -1,3 +1,4 @@
+import 'package:app_startup/components/card_timer/card_timer.dart';
 import 'package:app_startup/components/line_chart/line_chart_sample5.dart';
 import 'package:app_startup/components/segment_control/segment_control.dart';
 import 'package:app_startup/constants/color_app.dart';
@@ -68,19 +69,32 @@ class LineChartStatisticState extends State<LineChartStatistic> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 20,
+      body: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        color: grayBackground,
+        height: double.infinity,
+        child: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(7),
+              child: Column(
+                children: [
+                  CardTimer(
+                      imgPath: 'assets/images/Bo-giam-sat.jpg',
+                      deviceName: 'Monitoring Unit'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CardTimer(
+                      imgPath: 'assets/images/o-cam.webp', deviceName: 'Socket')
+                ],
+              ),
+            ),
           ),
-          SegmentControl(
-              selectedIndex: segmentControlIndex,
-              items: contentListSegmentControl,
-              getSelectedIndex: _setSegmentControlIndex),
-          LineChartSample5(
-              option: contentListSegmentControl[segmentControlIndex],
-              data: data),
-        ],
+        ),
       ),
     );
   }

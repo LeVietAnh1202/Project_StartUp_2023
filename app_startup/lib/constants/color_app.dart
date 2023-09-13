@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 
 const Color greenDark = Color(0xFF1A7D5A);
 const Color greenLight = Color(0xFFF0FDE1);
+const Color redDark = Color(0xFFA31616);
 const Color whiteText = Color(0xFFFFFFFF);
 const Color darkText = Color(0xFF1A1927);
+Color darkText50 = const Color(0xFF1A1927).withOpacity(0.5);
 const Color buildingName1 = Color(0xA4E65C00);
 const Color buildingName2 = Color(0xA4F9D423);
 const Color blueLight = Color(0xFFB2DDFF);
 const Color bodyBgContainer = Color(0xFFFFF9E8);
 const Color cardRoomBg = Color(0xFFF9F9F9);
+const Color cardBg = Color(0xFFF9F9F9);
 const Color deviceBg = Color(0xFFF9F9F9);
 const Color numberDevicesCl = Color(0xFF979797);
 const Color switchOnOffBg1 = Color(0xFFC9CED7);

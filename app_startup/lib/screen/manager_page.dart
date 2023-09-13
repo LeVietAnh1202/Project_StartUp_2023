@@ -1,19 +1,18 @@
 // import 'dart:ffi';
 
+import 'package:app_startup/components/card_timer/card_timer.dart';
+import 'package:app_startup/components/card_timer/card_timer.dart';
 import 'package:app_startup/constants/color_app.dart';
 import 'package:app_startup/constants/string_app.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // ignore: must_be_immutable
 class ManagerPage extends StatefulWidget {
-  num wordsReceived;
-  num wordsSent = 220.5;
-  // final ValueChanged<int> changeSelectedIndex;
-
   ManagerPage({
     super.key,
-    this.wordsReceived = 0,
     // required this.changeSelectedIndex,
   });
 
@@ -23,18 +22,122 @@ class ManagerPage extends StatefulWidget {
 
 class ManagerPageState extends State<ManagerPage> {
   // This widget is the root of your application.
+  final DatabaseReference _temperatureRef =
+      FirebaseDatabase.instance.reference().child(voltageThresholdPath);
+
+  @override
+  void initState() {
+    // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    //     FlutterLocalNotificationsPlugin();
+    // const AndroidInitializationSettings androidInitializationSettings =
+    //     AndroidInitializationSettings('@mipmap/ic_laucher');
+    // const DarwinInitializationSettings darwinInitializationSettings =
+    //     DarwinInitializationSettings();
+    // const InitializationSettings initializationSettings =
+    //     InitializationSettings(
+    //         android: androidInitializationSettings,
+    //         iOS: darwinInitializationSettings);
+    // const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    //     'messages', 'Messages',
+    //     description: 'This is for flutter firebase',
+    //     importance: Importance.max);
+
+    // createChannel(channel);
+    // flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+    // FirebaseMessaging.onMessage.listen((event) {
+    //   final notification = event.notification;
+    //   final android = event.notification?.android;
+    //   if (notification != null && android != null) {
+    //     flutterLocalNotificationsPlugin.show(
+    //         notification.hashCode,
+    //         notification.title,
+    //         notification.body,
+    //         NotificationDetails(
+    //             android: AndroidNotificationDetails(channel.id, channel.name,
+    //                 channelDescription: channel.description,
+    //                 icon: android.smallIcon)));
+    //   }
+    // });
+
+    super.initState();
+  }
+
+  // Hiển thị thông báo
+  Future<void> _showNotification(String title, String message) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'your_channel_id',
+      'your_channel_name',
+      channelDescription: 'your_channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+      showWhen: false,
+    );
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    const AndroidInitializationSettings androidInitializationSettings =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+    const DarwinInitializationSettings darwinInitializationSettings =
+        DarwinInitializationSettings();
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
+            android: androidInitializationSettings,
+            iOS: darwinInitializationSettings);
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+        'messages', 'Messages',
+        description: 'This is for flutter firebase',
+        importance: Importance.max);
+
+    await flutterLocalNotificationsPlugin.show(
+      0, // ID thông báo
+      title,
+      message,
+      platformChannelSpecifics,
+      payload: 'item x', // Dữ liệu tùy chỉnh
+    );
+
+    createChannel(channel);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+    // await flutterLocalNotificationsPlugin.show(
+    //         123,
+    //         'Title message',
+    //         'Body message',
+    //         NotificationDetails(
+    //             android: AndroidNotificationDetails(channel.id, channel.name,
+    //                 channelDescription: channel.description)));
+
+    FirebaseMessaging.onMessage.listen((event) {
+      print('Firebase Message: ');
+      final notification = event.notification;
+      final android = event.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+                android: AndroidNotificationDetails(channel.id, channel.name,
+                    channelDescription: channel.description,
+                    icon: android.smallIcon)));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    FirebaseDatabase database = FirebaseDatabase.instance;
-    DatabaseReference ref = FirebaseDatabase.instance.ref();
+    _temperatureRef.onValue.listen((event) {
+      final temperature = (event.snapshot.value as num).toDouble();
 
-    DatabaseReference starCountRef = database.ref('${historyMonitor1Path}2023/8/16/23/43/');
-    starCountRef.onValue.listen((DatabaseEvent event) {
-      final Map<dynamic, dynamic> data = event.snapshot.value as Map<dynamic, dynamic>;
-      setState(() {
-        // widget.wordsReceived = data;
-        print(data);
-      });
+      // Kiểm tra nhiệt độ và hiển thị thông báo
+      if (temperature > 30.0) {
+        print(temperature);
+        _showNotification('Nhiệt độ cao!', 'Nhiệt độ hiện tại: $temperature');
+      }
     });
 
     return Scaffold(
@@ -45,35 +148,18 @@ class ManagerPageState extends State<ManagerPage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
-      body: Center(
-          child: Column(
-        children: [
-          Container(
-            height: 10,
-          ),
-          ElevatedButton(
-            child: const Text("Sent"),
-            onPressed: () async {
-              setState(() {
-                widget.wordsSent++;
-                print("wordsSent: " + widget.wordsSent.toString());
-              });
-              await starCountRef.set(widget.wordsSent);
-            }, // Firebase sent
-          ),
-          Container(
-            height: 10,
-          ),
-          ElevatedButton(
-            child: const Text("Receive"),
-            onPressed: () {}, // Firebase received
-          ),
-          Container(
-            height: 10,
-          ),
-          Text(widget.wordsReceived.toString())
-        ],
-      )),
+      body: const Center(
+        child: Text('Listening to Temperature Changes...'),
+      ),
     );
+  }
+
+  void createChannel(AndroidNotificationChannel channel) async {
+    final FlutterLocalNotificationsPlugin plugin =
+        FlutterLocalNotificationsPlugin();
+    await plugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
   }
 }

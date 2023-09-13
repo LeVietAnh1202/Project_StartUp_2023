@@ -1,3 +1,5 @@
+import 'package:app_startup/components/card_timer/card_timer.dart';
+import 'package:app_startup/screen/timer_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_startup/screen/home_page.dart';
@@ -22,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
     ManagerPage(),
   ];
 
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   void _changeSelectedIndex(int index) {
     setState(() {

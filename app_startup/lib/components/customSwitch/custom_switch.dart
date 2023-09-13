@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class CustomSwitch extends StatefulWidget {
   bool isOn;
+  final ValueChanged<bool> changeStateOnOff;
 
   CustomSwitch({
     super.key,
     required this.isOn,
+    required this.changeStateOnOff,
   });
 
   @override
@@ -19,6 +21,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
     setState(() {
       widget.isOn = !widget.isOn;
     });
+    widget.changeStateOnOff(widget.isOn);
   }
 
   @override
