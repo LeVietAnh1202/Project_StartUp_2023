@@ -19,9 +19,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Widget> pageList = <Widget>[
     const HomePage(),
-    const LineChartStatistic(),
+    // const LineChartStatistic(),
     const NotificationPage(),
-    ManagerPage(),
+    // ManagerPage(),
   ];
 
   int _selectedIndex = 0;

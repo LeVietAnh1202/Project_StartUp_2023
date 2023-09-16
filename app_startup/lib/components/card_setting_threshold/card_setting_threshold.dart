@@ -32,13 +32,13 @@ class _CartSettingThresholdState extends State<CartSettingThreshold> {
     super.initState();
     String thresholdPath, notiPath;
     switch (widget.thresholdText) {
-      case voltageThresholdText:
+      case voltageThresholdTextE:
         {
           thresholdPath = voltageThresholdPath;
           notiPath = voltageNotiPath;
           break;
         }
-      case amperageThresholdText:
+      case amperageThresholdTextE:
         {
           thresholdPath = amperageThresholdPath;
           notiPath = amperageNotiPath;

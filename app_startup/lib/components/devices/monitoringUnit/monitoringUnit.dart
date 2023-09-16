@@ -18,7 +18,7 @@ class MonitoringUnitPage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class MonitoringUnitPageState extends State<MonitoringUnitPage> {
-  void _viewListDevices() {
+  void _toStaticPage() {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const StatisticPage(),
@@ -29,7 +29,7 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _viewListDevices,
+      onTap: _toStaticPage,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -91,14 +91,21 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                                 alignment: Alignment.topCenter,
                                 child: const Column(children: [
                                   Text(
-                                    "3.2",
+                                    // "3.2",
+                                    "0.0",
                                     style: TextStyle(
                                         color: darkText,
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    "Số điện (kWh)",
+                                    "Electric number",
+                                    // "Số điện (kWh)",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Text(
+                                    "(kWh)",
+                                    // "Số điện (kWh)",
                                     style: TextStyle(fontSize: 14),
                                   ),
                                 ]),
@@ -119,14 +126,15 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                   alignment: Alignment.topCenter,
                   child: const Column(children: [
                     Text(
-                      "223.55",
+                      // "223.55",
+                      "0.0",
                       style: TextStyle(
                           color: darkText,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "Điện áp (V)",
+                      "Voltage (V)",
                       style: TextStyle(fontSize: 14),
                     ),
                   ]),
@@ -135,14 +143,15 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                   alignment: Alignment.topCenter,
                   child: const Column(children: [
                     Text(
-                      "500.06",
+                      // "500.06",
+                      "0.0",
                       style: TextStyle(
                           color: darkText,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "Công suất (W)",
+                      "Wattage (W)",
                       style: TextStyle(fontSize: 14),
                     ),
                   ]),
@@ -151,14 +160,15 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                   alignment: Alignment.topCenter,
                   child: const Column(children: [
                     Text(
-                      "8.01",
+                      // "8.01",
+                      "0.0",
                       style: TextStyle(
                           color: darkText,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "Dòng (A)",
+                      "Current (A)",
                       style: TextStyle(fontSize: 14),
                     ),
                   ]),

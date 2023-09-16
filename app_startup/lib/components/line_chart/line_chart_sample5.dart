@@ -198,7 +198,7 @@ class _LineChartSample5State extends State<LineChartSample5> {
               minY: 0,
               titlesData: FlTitlesData(
                 leftTitles: const AxisTitles(
-                  axisNameWidget: Text('kWh'),
+                  axisNameWidget: Text('Wh'),
                   axisNameSize: 24,
                   sideTitles: SideTitles(
                     showTitles: true,

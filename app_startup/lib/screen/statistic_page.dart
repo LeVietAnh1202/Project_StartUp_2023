@@ -3,6 +3,7 @@ import 'package:app_startup/components/segment_control/segment_control.dart';
 import 'package:app_startup/constants/color_app.dart';
 import 'package:app_startup/constants/string_app.dart';
 import 'package:app_startup/models/data_line_chart/data.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -29,25 +30,41 @@ class StatisticPageState extends State<StatisticPage> {
     '1mo',
     '1yr'
   ];
-  late List<double> data;
+  List<double>? data;
 
   @override
   void initState() {
     super.initState();
     segmentControlIndex = widget.initialSegmentControlIndex;
-    data = _setData()!;
+    data = _setData();
   }
 
-  void _setSegmentControlIndex(int index) {
+  void _setSegmentControlIndex(int index) async {
     setState(() {
       segmentControlIndex = index;
-      data = _setData()!;
+      data = _setData();
     });
   }
 
   List<double>? _setData() {
     switch (contentListSegmentControl[segmentControlIndex]) {
       case fifteenMinutes:
+        // DateTime _selectedDate = DateTime.now();
+        // TimeOfDay _selectedTime = TimeOfDay.now();
+        // List<double> temp =  [];
+        // String time = 'ESP8266/Monitor1/History/${DateTime.now().year}/${DateTime.now().month}/${DateTime.now().day}/${DateTime.now().hour}';
+        // print('ESP8266/Monitor1/History/${DateTime.now().year}/${DateTime.now().month}/${DateTime.now().day}/${DateTime.now().hour}/${DateTime.now().minute}');
+        // // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        // //     content: Text(time),
+        // // ));
+        // for (int i = 0; i < 15; i++) {
+        //   DatabaseReference _timeRef =  FirebaseDatabase.instance.ref().child('$time/${DateTime.now().minute - i}');
+
+        //   DataSnapshot databaseEvent = await _timeRef.get();
+        //   double value = databaseEvent.value as double;
+        //   temp.add(value);
+        // }
+        // return temp;
         return fifteenMinutesData;
       case thirtyMinutes:
         return thirtyMinutesData;
@@ -88,7 +105,7 @@ class StatisticPageState extends State<StatisticPage> {
               ),
               LineChartSample5(
                   option: contentListSegmentControl[segmentControlIndex],
-                  data: data),
+                  data: data == null ? [] : data!),
               Container(
                 padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
                 child: Column(
@@ -109,7 +126,7 @@ class StatisticPageState extends State<StatisticPage> {
                             Text('Today'.toUpperCase(), style: TextStyle(fontWeight: FontWeight.w500, color: darkText50)),
                             const SizedBox(height: 5,),
                             const Text(
-                              '40.0',
+                              '10.0',
                               style: TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
@@ -158,7 +175,7 @@ class StatisticPageState extends State<StatisticPage> {
                     const SizedBox(
                       height: 15,
                     ),
-                    Container(height: 150, width: double.infinity, color: Colors.amber,)
+                    // Container(height: 150, width: double.infinity, color: Colors.amber,)
                   ],
                 ),
               )

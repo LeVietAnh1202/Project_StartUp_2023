@@ -29,18 +29,18 @@ class BottomNavState extends State<BottomNav> {
           icon: Icon(Icons.home_outlined),
           label: 'Home',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings_outlined),
-          label: 'Setting',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.settings_outlined),
+        //   label: 'Setting',
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.notifications_outlined),
           label: 'Notification',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.dashboard_outlined),
-          label: 'Manager',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.dashboard_outlined),
+        //   label: 'Manager',
+        // ),
       ],
       currentIndex: widget.selectedIndex,
       onTap: widget.changeSelectedIndex,

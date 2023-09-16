@@ -30,6 +30,9 @@ const String onE = 'ON';
 const String offE = 'OFF';
 
 const String voltageThresholdTextE = 'Voltage threshold';
+const String voltageNotiTextE = 'Notification of voltage overload:';
+const String amperageThresholdTextE = 'Current threshold:';
+const String amperageNotiTextE = 'Notification of current overload:';
 
 const String monitoringUnitE = 'Monitoring Unit';
 const String socketE = 'Socket';

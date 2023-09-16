@@ -35,13 +35,9 @@ void main() async {
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  if (kIsWeb) {
-  setPathUrlStrategy();
   runApp(
-    MyApp(),
+    const MyApp(),
   );
-  }
-  // runApp(const MyApp());
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -64,12 +60,12 @@ class MyApp extends StatelessWidget {
         // toggleableActiveColor: Colors.blue,
         // unselectedWidgetColor: Colors.grey,
       ),
-      home: const MainScreen(), 
-      // navigatorKey: navigatorKey,
-      // routes: {
-      //   '/':(context) => const MainScreen(),
-      //   '/push-page': ((context) => const PushNotification()),
-      // },
+      // home: const MainScreen(), 
+      navigatorKey: navigatorKey,
+      routes: {
+        '/':(context) => const MainScreen(),
+        '/push-page': ((context) => const PushNotification()),
+      },
     );
   }
 }

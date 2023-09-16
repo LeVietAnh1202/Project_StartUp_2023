@@ -1,5 +1,6 @@
 import 'package:app_startup/components/card_room/card_room.dart';
 import 'package:app_startup/components/devices/monitoringUnit/monitoringUnit.dart';
+import 'package:app_startup/components/devices/socket/socket.dart';
 import 'package:app_startup/components/segment_control/segment_control.dart';
 import 'package:app_startup/models/card_rooms.dart';
 import 'package:flutter/material.dart';
@@ -221,7 +222,7 @@ class HomePageState extends State<HomePage> {
                               children: segmentControlIndex == 0
                                   ? cardRoomsWidget
                                   : [
-                                      MonitoringUnitPage(isOn: true),
+                                      SocketPage(isOn: true),
                                       Container(height: 15),
                                       MonitoringUnitPage(isOn: true),
                                       Container(height: 15),

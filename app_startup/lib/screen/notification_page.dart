@@ -83,7 +83,8 @@ class _NotificationPageState extends State<NotificationPage> {
       appBar: AppBar(
         backgroundColor: appBarColor,
         title: const Text(
-          'Thiết lập mức cảnh báo',
+          // 'Thiết lập mức cảnh báo',
+          'Set alert level',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -95,9 +96,9 @@ class _NotificationPageState extends State<NotificationPage> {
         child: Column(
           children: [
             const SizedBox(height: 10,),
-            CartSettingThreshold(thresholdText: voltageThresholdText, notiText: voltageNotiText,),
+            CartSettingThreshold(thresholdText: voltageThresholdTextE, notiText: voltageNotiTextE,),
             const SizedBox(height: 20,),
-            CartSettingThreshold(thresholdText: amperageThresholdText, notiText: amperageNotiText,),
+            CartSettingThreshold(thresholdText: amperageThresholdTextE, notiText: amperageNotiTextE,),
             const SizedBox(height: 20,),
           ],
         ),
