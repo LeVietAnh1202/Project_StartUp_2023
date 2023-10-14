@@ -34,14 +34,14 @@ class _CartSettingThresholdState extends State<CartSettingThreshold> {
     switch (widget.thresholdText) {
       case voltageThresholdTextE:
         {
-          thresholdPath = voltageThresholdPath;
-          notiPath = voltageNotiPath;
+          thresholdPath = '$flutterMonitor1/$voltageThresholdPath';
+          notiPath = '$flutterMonitor1/$voltageNotiPath';
           break;
         }
       case amperageThresholdTextE:
         {
-          thresholdPath = amperageThresholdPath;
-          notiPath = amperageNotiPath;
+          thresholdPath = '$flutterMonitor1/$amperageThresholdPath';
+          notiPath = '$flutterMonitor1/$amperageNotiPath';
           break;
         }
       default:

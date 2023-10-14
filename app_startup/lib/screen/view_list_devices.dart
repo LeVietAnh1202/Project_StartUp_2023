@@ -35,13 +35,13 @@ class ViewListDevicesPage extends StatelessWidget {
                 padding: const EdgeInsets.all(0.0),
                 child: Column(
                   children: [
-                    SocketPage(isOn: true),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     MonitoringUnitPage(
                       isOn: true,
                     ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SocketPage(isOn: true),
                   ],
                 ),
               ),

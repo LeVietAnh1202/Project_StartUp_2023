@@ -46,9 +46,9 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 
-	<!-- <key>Privacy - Speech Recognition Usage Description</key>
+	<key>Privacy - Speech Recognition Usage Description</key>
 	<string>Recognize and display speech input</string>
 	<key>Privacy - Microphone Usage Description</key>
-	<string> Detect speech input</string> -->
+	<string> Detect speech input</string>
 </dict>
 </plist>

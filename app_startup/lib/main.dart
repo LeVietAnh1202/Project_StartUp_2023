@@ -23,7 +23,7 @@ void main() async {
 
   //   // Note: This callback is fired at each app startup and whenever a new
   //   // token is generated.
-  //   print(fcmToken);
+  //   print("Token" + fcmToken);
   // }).onError((err) {
   //   // Error getting token.
   // });

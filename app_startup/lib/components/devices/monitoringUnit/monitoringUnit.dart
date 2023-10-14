@@ -1,6 +1,7 @@
 import 'package:app_startup/components/customSwitch/custom_switch.dart';
 import 'package:app_startup/constants/color_app.dart';
 import 'package:app_startup/screen/statistic_page.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -18,6 +19,66 @@ class MonitoringUnitPage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class MonitoringUnitPageState extends State<MonitoringUnitPage> {
+  late DatabaseReference _isOnRef, _currentRef, _voltageRef, _energyRef, _powerRef;
+  double _current = 0.0, _voltage = 0.0, _energy = 0.0, _power = 0.0;
+
+  // This widget is the root of your application.
+  @override
+  void initState() {
+    super.initState();
+
+    String isOnPath = 'Flutter/Monitor1/isOn';
+    String nowPath = 'ESP8266/Now1';
+
+    setState(() {
+      _isOnRef = FirebaseDatabase.instance.ref().child(isOnPath);
+      _currentRef = FirebaseDatabase.instance.ref().child('$nowPath/Current');
+      _voltageRef = FirebaseDatabase.instance.ref().child('$nowPath/Voltage');
+      _energyRef = FirebaseDatabase.instance.ref().child('$nowPath/Energy');
+      _powerRef = FirebaseDatabase.instance.ref().child('$nowPath/Power');
+    });
+
+    _currentRef.onValue.listen((event) {
+      if (event.snapshot.value != null) {
+        setState(() {
+          _current = (event.snapshot.value as num).toDouble();
+        });
+      }
+    });
+
+    _voltageRef.onValue.listen((event) {
+      if (event.snapshot.value != null) {
+        setState(() {
+          _voltage = (event.snapshot.value as num).toDouble();
+        });
+      }
+    });
+
+    _energyRef.onValue.listen((event) {
+      if (event.snapshot.value != null) {
+        setState(() {
+          _energy = (event.snapshot.value as num).toDouble();
+        });
+      }
+    });
+    
+    _powerRef.onValue.listen((event) {
+      if (event.snapshot.value != null) {
+        setState(() {
+          _power = (event.snapshot.value as num).toDouble();
+        });
+      }
+    });
+
+    _isOnRef.onValue.listen((event) {
+      if (event.snapshot.value != null) {
+        setState(() {
+          widget.isOn = (event.snapshot.value as num == 1) ? true : false;
+        });
+      }
+    });
+  }
+
   void _toStaticPage() {
       Navigator.push(
         context,
@@ -84,26 +145,27 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                               Container(
                                   margin: const EdgeInsets.only(top: 10),
                                   child: CustomSwitch(isOn: widget.isOn, changeStateOnOff: (value) {
-                                    
+                                    widget.isOn = value;
+                                    _isOnRef.set(value ? 1 : 0);
                                   },)),
                               Container(
                                 margin: const EdgeInsets.only(top: 10),
                                 alignment: Alignment.topCenter,
-                                child: const Column(children: [
+                                child: Column(children: [
                                   Text(
                                     // "3.2",
-                                    "0.0",
-                                    style: TextStyle(
+                                     _energy.toStringAsFixed(3),
+                                    style: const TextStyle(
                                         color: darkText,
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
+                                  const Text(
                                     "Electric number",
                                     // "Số điện (kWh)",
                                     style: TextStyle(fontSize: 14),
                                   ),
-                                  Text(
+                                  const Text(
                                     "(kWh)",
                                     // "Số điện (kWh)",
                                     style: TextStyle(fontSize: 14),
@@ -124,16 +186,16 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                 children: [
                 Container(
                   alignment: Alignment.topCenter,
-                  child: const Column(children: [
+                  child: Column(children: [
                     Text(
                       // "223.55",
-                      "0.0",
-                      style: TextStyle(
+                      _voltage.toStringAsFixed(2),
+                      style: const TextStyle(
                           color: darkText,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    const Text(
                       "Voltage (V)",
                       style: TextStyle(fontSize: 14),
                     ),
@@ -141,16 +203,16 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                 ),
                 Container(
                   alignment: Alignment.topCenter,
-                  child: const Column(children: [
+                  child:  Column(children: [
                     Text(
                       // "500.06",
-                      "0.0",
-                      style: TextStyle(
+                      _power.toStringAsFixed(5).replaceAll(RegExp(r"(\.0*|0*)$"), ""),
+                      style: const TextStyle(
                           color: darkText,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    const Text(
                       "Wattage (W)",
                       style: TextStyle(fontSize: 14),
                     ),
@@ -158,16 +220,16 @@ class MonitoringUnitPageState extends State<MonitoringUnitPage> {
                 ),
                 Container(
                   alignment: Alignment.topCenter,
-                  child: const Column(children: [
+                  child: Column(children: [
                     Text(
                       // "8.01",
-                      "0.0",
-                      style: TextStyle(
+                      _current.toString(),
+                      style: const TextStyle(
                           color: darkText,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    const Text(
                       "Current (A)",
                       style: TextStyle(fontSize: 14),
                     ),

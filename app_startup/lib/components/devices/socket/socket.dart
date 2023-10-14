@@ -23,7 +23,7 @@ class SocketPageState extends State<SocketPage> {
     super.initState();
 
     String isOnPath = 'Flutter/Monitor2/isOn';
-    String nowPath = 'ESP8266/Now';
+    String nowPath = 'ESP8266/Now2';
 
     setState(() {
       _isOnRef = FirebaseDatabase.instance.ref().child(isOnPath);
