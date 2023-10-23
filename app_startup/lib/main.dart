@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
       // home: const MainScreen(), 
       navigatorKey: navigatorKey,
       routes: {
-        '/':(context) => const MainScreen(),
+        '/':(context) => const Login(),
         '/push-page': ((context) => const PushNotification()),
       },
     );

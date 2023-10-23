@@ -9,6 +9,8 @@ import 'package:app_startup/screen/setting_page.dart';
 
 import 'package:app_startup/components/bottom-nav/bottom_nav.dart';
 
+import '../login_signup/login_form.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -22,6 +24,7 @@ class _MainScreenState extends State<MainScreen> {
     // const LineChartStatistic(),
     const NotificationPage(),
     // ManagerPage(),
+    // const Login()
   ];
 
   int _selectedIndex = 0;

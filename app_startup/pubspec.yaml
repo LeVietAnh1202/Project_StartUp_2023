@@ -76,6 +76,10 @@ flutter:
     - assets/images/bed-room-3.jfif
     - assets/images/Bo-giam-sat.jpg
     - assets/images/o-cam.webp
+    - assets/images/facebook.png
+    - assets/images/google.png
+    - assets/images/wave.png
+    - assets/images/logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

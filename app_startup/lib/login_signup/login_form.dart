@@ -1,529 +1,567 @@
-import 'package:app_startup/components/buttons/login_btn.dart';
-import 'package:app_startup/constants/color_app.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/gestures.dart';
-// import 'dart:ui';
-// import 'package:google_fonts/google_fonts.dart';
-import 'package:app_startup/utils.dart';
+import 'package:fisebase_auth';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+enum CurrentScreen { Login, SignUp }
+
+class Login extends StatefulWidget {
+  const Login({Key? key});
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  late String _email, _password;
+  final auth = FisebaseA
+
+  CurrentScreen currentScreen = CurrentScreen.Login;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  bool showPassword = false;
+  bool showConfirmPassword = false;
+
+  bool showSignUpFields = false;
+  bool rememberMe = false;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  void clearTextFields() {
+    emailController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
     double baseWidth = 443;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    return Container(
-      width: double.infinity,
-      child: Container(
-        // loginform71s (11:706)
-        width: double.infinity,
-        height: 933 * fem,
-        decoration: BoxDecoration(
-          color: greenLight,
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              // pngtreesavingelectricityenergy (203:443)
-              left: 118 * fem,
-              top: 0 * fem,
-              child: Align(
-                child: SizedBox(
-                  width: 207 * fem,
-                  height: 435 * fem,
-                  child: Image.asset(
-                    'assets/login-signup/images/pngtreesavingelectricityenergysavingenvironmental1012528-1-wjo.png',
-                  ),
-                ),
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            alignment: Alignment.topCenter,
+            child: Image.asset(
+              'assets/images/wave.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              alignment: Alignment.topCenter,
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: 200,
+                height: 200,
               ),
             ),
-            Positioned(
-              // group22VYD (11:716)
-              left: 0 * fem,
-              top: 304 * fem,
-              child: Container(
-                padding: EdgeInsets.fromLTRB(
-                    57 * fem, 25 * fem, 56 * fem, 123 * fem),
-                width: 443 * fem,
-                height: 677 * fem,
-                decoration: BoxDecoration(
-                  color: Color(0xffffffff),
-                  borderRadius: BorderRadius.circular(40 * fem),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x3f000000),
-                      offset: Offset(4 * fem, 4 * fem),
-                      blurRadius: 2 * fem,
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      // autogroupndpk62D (R8ZtnmaaiEfrP1M3UFNdPK)
-                      margin: EdgeInsets.fromLTRB(
-                          42 * fem, 0 * fem, 52 * fem, 2.8 * fem),
-                      width: double.infinity,
-                      height: 60 * fem,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            // autogroupsywhPX7 (R8ZtvgX4fq7hkE9YAwSYWH)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 62 * fem, 0 * fem),
-                            width: 98 * fem,
-                            height: double.infinity,
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  // login6wK (11:748)
-                                  left: 19.5 * fem,
-                                  top: 0 * fem,
-                                  child: Center(
-                                    child: Align(
-                                      child: SizedBox(
-                                        width: 58 * fem,
-                                        height: 60 * fem,
-                                        child: Text(
-                                          'Login',
-                                          textAlign: TextAlign.center,
-                                          style: SafeGoogleFont(
-                                            'Lato',
-                                            fontSize: 24 * ffem,
-                                            fontWeight: FontWeight.w500,
-                                            height: 2.5 * ffem / fem,
-                                            color: greenDark,
-                                          ),
-                                        ),
-                                      ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 200.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            currentScreen = CurrentScreen.Login;
+                            clearTextFields();
+                            showSignUpFields = false;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: currentScreen == CurrentScreen.Login
+                                ? Color(0xFF1A7D5A)
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: currentScreen == CurrentScreen.Login
+                                ? [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.3),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 2),
                                     ),
-                                  ),
-                                ),
-                                Positioned(
-                                  // line3yVK (207:93)
-                                  left: 0 * fem,
-                                  top: 50 * fem,
-                                  child: Align(
-                                    child: SizedBox(
-                                      width: 98 * fem,
-                                      height: 2 * fem,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: greenDark,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                  ]
+                                : [],
+                          ),
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            '  Login  ',
+                            style: TextStyle(
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                              color: currentScreen == CurrentScreen.Login
+                                  ? Colors.white
+                                  : Color(0xFF1A7D5A),
                             ),
                           ),
-                          Center(
-                            // signup4mf (11:749)
-                            child: Text(
-                              'Sign up',
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Lato',
-                                fontSize: 24 * ffem,
-                                fontWeight: FontWeight.w500,
-                                height: 2.5 * ffem / fem,
-                                color: greenDark,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // autogroup1g6hnSm (R8Zu3BLEod6x2RszBP1g6h)
-                      margin: EdgeInsets.fromLTRB(
-                          22 * fem, 0 * fem, 23 * fem, 4 * fem),
-                      width: double.infinity,
-                      height: 216.2 * fem,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            // fieldcontainervariant3Vry (11:733)
-                            left: 0 * fem,
-                            top: 0 * fem,
-                            child: Container(
-                              width: 285 * fem,
-                              height: 83.11 * fem,
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                    // rectangle20D2H (I11:733;110:850)
-                                    left: 0 * fem,
-                                    top: 29.0163946152 * fem,
-                                    child: Align(
-                                      child: SizedBox(
-                                        width: 285 * fem,
-                                        height: 49.18 * fem,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(9 * fem),
-                                            border: Border.all(
-                                                color: greenDark),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    // group24K5K (I11:733;110:851)
-                                    left: 22.5200195312 * fem,
-                                    top: 0 * fem,
-                                    child: Container(
-                                      width: 46 * fem,
-                                      height: 60 * fem,
-                                      child: Stack(
-                                        children: [
-                                          Positioned(
-                                            // rectangle2131K (I11:733;110:852)
-                                            left: 0 * fem,
-                                            top: 18.1967220306 * fem,
-                                            child: Align(
-                                              child: SizedBox(
-                                                width: 46 * fem,
-                                                height: 21.64 * fem,
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0xffffffff),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            // emailvL1 (I11:733;110:853)
-                                            left: 4.9999771118 * fem,
-                                            top: 0 * fem,
-                                            child: Center(
-                                              child: Align(
-                                                child: SizedBox(
-                                                  width: 36 * fem,
-                                                  height: 60 * fem,
-                                                  child: Text(
-                                                    'Email',
-                                                    textAlign: TextAlign.center,
-                                                    style: SafeGoogleFont(
-                                                      'Inter',
-                                                      fontSize: 14 * ffem,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      height: 4.2857142857 *
-                                                          ffem /
-                                                          fem,
-                                                      color: greenDark,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    // johndoegmailcomPjP (I11:733;110:854)
-                                    left: 28.5 * fem,
-                                    top: 23.1147546768 * fem,
-                                    child: Center(
-                                      child: Align(
-                                        child: SizedBox(
-                                          width: 115 * fem,
-                                          height: 60 * fem,
-                                          child: Text(
-                                            'johndoe@gmail.com',
-                                            textAlign: TextAlign.center,
-                                            style: SafeGoogleFont(
-                                              'Inter',
-                                              fontSize: 12 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 5 * ffem / fem,
-                                              color: Color(0xaf1a7d5a),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            // fieldcontainervariant3rss (11:734)
-                            left: 0 * fem,
-                            top: 79.0000019073 * fem,
-                            child: Container(
-                              width: 285 * fem,
-                              height: 87.54 * fem,
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                    // rectangle20yhb (I11:734;110:856)
-                                    left: 0 * fem,
-                                    top: 29.0163917542 * fem,
-                                    child: Align(
-                                      child: SizedBox(
-                                        width: 285 * fem,
-                                        height: 49.18 * fem,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(9 * fem),
-                                            border: Border.all(
-                                                color: greenDark),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    // group23HTP (I11:734;110:857)
-                                    left: 20 * fem,
-                                    top: 0 * fem,
-                                    child: Container(
-                                      width: 73 * fem,
-                                      height: 60 * fem,
-                                      child: Stack(
-                                        children: [
-                                          Positioned(
-                                            // rectangle21QY1 (I11:734;110:858)
-                                            left: 0 * fem,
-                                            top: 18.1967201233 * fem,
-                                            child: Align(
-                                              child: SizedBox(
-                                                width: 73 * fem,
-                                                height: 21.64 * fem,
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0xffffffff),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            // password8U1 (I11:734;110:859)
-                                            left: 4 * fem,
-                                            top: 0 * fem,
-                                            child: Center(
-                                              child: Align(
-                                                child: SizedBox(
-                                                  width: 65 * fem,
-                                                  height: 60 * fem,
-                                                  child: Text(
-                                                    'Password',
-                                                    textAlign: TextAlign.center,
-                                                    style: SafeGoogleFont(
-                                                      'Inter',
-                                                      fontSize: 14 * ffem,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      height: 4.2857142857 *
-                                                          ffem /
-                                                          fem,
-                                                      color: greenDark,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    // prd (I11:734;110:860)
-                                    left: 24 * fem,
-                                    top: 27.5409812927 * fem,
-                                    child: Center(
-                                      child: Align(
-                                        child: SizedBox(
-                                          width: 74 * fem,
-                                          height: 60 * fem,
-                                          child: Text(
-                                            '**********',
-                                            textAlign: TextAlign.center,
-                                            style: SafeGoogleFont(
-                                              'Bebas Neue',
-                                              fontSize: 14 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 4.2857142857 * ffem / fem,
-                                              letterSpacing: 1.4 * fem,
-                                              color: Color(0xaf1a7d5a),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    // eyeicon753 (I11:734;110:861)
-                                    left: 246 * fem,
-                                    top: 48.6885261536 * fem,
-                                    child: Align(
-                                      child: SizedBox(
-                                        width: 18.05 * fem,
-                                        height: 10.62 * fem,
-                                        child: Opacity(
-                                          opacity: 0.75,
-                                          child: Image.asset(
-                                            'assets/login-signup/images/eye-icon.png',
-                                            width: 18.05 * fem,
-                                            height: 10.62 * fem,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            // group26P2Z (207:94)
-                            left: 18 * fem,
-                            top: 156.1967220306 * fem,
-                            child: Container(
-                              width: 245.1 * fem,
-                              height: 60 * fem,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // icontoggleoff6hf (207:95)
-                                    margin: EdgeInsets.fromLTRB(0 * fem,
-                                        0 * fem, 7.45 * fem, 0.38 * fem),
-                                    width: 24.7 * fem,
-                                    height: 15.63 * fem,
-                                    child: Image.asset(
-                                      'assets/login-signup/images/icon-toggle-off-Mkm.png',
-                                      width: 24.7 * fem,
-                                      height: 15.63 * fem,
-                                    ),
-                                  ),
-                                  Center(
-                                    // remembermePgm (207:97)
-                                    child: Container(
-                                      margin: EdgeInsets.fromLTRB(0 * fem,
-                                          0 * fem, 44.95 * fem, 0 * fem),
-                                      child: Text(
-                                        'Remember me',
-                                        textAlign: TextAlign.center,
-                                        style: SafeGoogleFont(
-                                          'Lato',
-                                          fontSize: 12 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 5 * ffem / fem,
-                                          color: greenDark,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Center(
-                                    // forgotpasswordVjo (207:98)
-                                    child: Text(
-                                      'Forgot password ',
-                                      textAlign: TextAlign.center,
-                                      style: SafeGoogleFont(
-                                        'Lato',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 5 * ffem / fem,
-                                        decoration: TextDecoration.underline,
-                                        color: greenDark,
-                                        decorationColor: greenDark,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Button Login
-                    const LoginBtn(),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(55, 12, 0, 22),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Already have an account? ",
-                            style: SafeGoogleFont(
-                              'Lato',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              height: 2,
-                              color: greenDark,
-                            ),
-                          ),
-                          Text(
-                            "Login here",
-                            style: SafeGoogleFont(
-                              'Lato',
-                              fontSize: 14,
-                              height: 2,
-                              color: greenDark,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // line
-                    Container(
-                      width: double.infinity,
-                      height: 1 * fem,
-                      decoration: const BoxDecoration(
-                        color: greenDark,
-                      ),
-                    ),
-                    Container(
-                      // iconsrAM (11:723)
-                      margin: EdgeInsets.fromLTRB(
-                          1 * fem, 0 * fem, 0 * fem, 2 * fem),
-                      width: 167 * fem,
-                      height: 45 * fem,
-                      child: Image.asset(
-                        'assets/login-signup/images/icons.png',
-                        width: 167 * fem,
-                        height: 45 * fem,
-                      ),
-                    ),
-                    Center(
-                      // oruseyouremailaccountLLR (11:747)
-                      child: Text(
-                        'or use your email account',
-                        textAlign: TextAlign.center,
-                        style: SafeGoogleFont(
-                          'Lato',
-                          fontSize: 12 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 5 * ffem / fem,
-                          letterSpacing: -0.24 * fem,
-                          color: greenDark,
                         ),
                       ),
+                      SizedBox(width: 16.0),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            currentScreen = CurrentScreen.SignUp;
+                            clearTextFields();
+                            showSignUpFields = true;
+                          });
+                        },
+                        
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: currentScreen == CurrentScreen.SignUp
+                                ? Color(0xFF1A7D5A)
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: currentScreen == CurrentScreen.SignUp
+                                ? [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.3),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 2),
+                                    ),
+                                  ]
+                                : [],
+                          ),
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                              color: currentScreen == CurrentScreen.SignUp
+                                  ? Colors.white
+                                  : Color(0xFF1A7D5A),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+
+
+
+
+
+
+
+
+                  
+                  SizedBox(height: 30.0),
+                  if (currentScreen == CurrentScreen.Login ||
+                      currentScreen == CurrentScreen.SignUp)
+                    Column(
+                      children: [
+                        TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            labelStyle: TextStyle(
+                              fontSize: 20.0,
+                              color: Color(0xFF1A7D5A),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF1A7D5A),
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF1A7D5A),
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        TextField(
+                          controller: passwordController,
+                          obscureText: !showPassword,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            labelStyle: TextStyle(
+                              fontSize: 20.0,
+                              color: Color(0xFF1A7D5A),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF1A7D5A),
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF1A7D5A),
+                              ),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  showPassword = !showPassword;
+                                });
+                              },
+                              icon: Icon(
+                                showPassword ? Icons.visibility : Icons.visibility_off,
+                                color: Color(0xFF1A7D5A),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        if (currentScreen == CurrentScreen.Login)
+                          SizedBox(height: 25.0),
+                        
+                        if (currentScreen == CurrentScreen.Login)
+                          Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    value: rememberMe,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        rememberMe = value ?? false;
+                                      });
+                                    },
+                                    activeColor: Color(0xFF1A7D5A),
+                                  ),
+                                  Text(
+                                    'Remember me',
+                                    style: TextStyle(
+                                      fontSize: 17.0,
+                                      color: Color(0xFF1A7D5A),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Spacer(), // Spacer để căn lề "Forgot password" sang phải
+                              
+                              
+                              
+                              Text(
+                                'Forgot password',
+                                style: TextStyle(
+                                  fontSize: 17.0,
+                                  color: Color(0xFF1A7D5A),
+                                  decoration: TextDecoration.underline,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+
+
+                        if (currentScreen == CurrentScreen.Login)
+                          SizedBox(height: 25.0),
+                        if (currentScreen == CurrentScreen.Login)
+                          Container(
+                            width: double.infinity, // Make the button span the full width
+                            padding: EdgeInsets.symmetric(horizontal: 0.0), // Add horizontal padding
+                            child: ElevatedButton(
+                              onPressed: () {
+                                
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF1A7D5A),
+                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                ),
+                              ),             
+                              child: Text(
+                                'LOGIN',
+                                style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+
+
+                        if (currentScreen == CurrentScreen.Login)
+                          SizedBox(height: 26.0),
+                        if (currentScreen == CurrentScreen.Login)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Don't have an account? ",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Color(0xFF1A7D5A),
+                                ),
+                              ),
+
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    currentScreen = CurrentScreen.SignUp;
+                                  });
+                                },
+                                child: Text(
+                                  "Sign up here",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: Color(0xFF1A7D5A),
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          if (currentScreen == CurrentScreen.Login)
+                          SizedBox(height: 16.0),
+                    
+                    
+                        if (currentScreen == CurrentScreen.Login)
+                          Container(
+                            height: 1, // Độ cao của đường thẳng
+                            color: Color(0xFF1A7D5A), // Màu của đường thẳng
+                            margin: EdgeInsets.only(top: 5), // Khoảng cách từ đường thẳng đến ô nhập liệu
+                          ),
+
+
+                        if (currentScreen == CurrentScreen.Login)
+                          SizedBox(height: 16.0),
+                        if (currentScreen == CurrentScreen.Login)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/facebook.png', // Thay đổi đường dẫn đến biểu tượng Facebook
+                                height: 50,
+                                width: 50,
+                              ),
+                              SizedBox(width: 30), // Khoảng cách giữa các biểu tượng
+                              Image.asset(
+                                'assets/images/google.png', // Thay đổi đường dẫn đến biểu tượng Google
+                                height: 50,
+                                width: 50,
+                              ),
+                            ],
+                          ),
+                    
+                    
+                    
+                          if (currentScreen == CurrentScreen.Login)
+                          SizedBox(height: 16.0),
+                          if (currentScreen == CurrentScreen.Login)
+                          Text(
+                            'or use your email account',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Color(0xFF1A7D5A),
+                            ),
+                          ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        if (currentScreen == CurrentScreen.SignUp)
+                          SizedBox(height: 16.0),
+                          
+                        if (currentScreen == CurrentScreen.SignUp)
+                          TextField(
+                            controller: confirmPasswordController,
+                            obscureText: !showConfirmPassword,
+                            decoration: InputDecoration(
+                              labelText: 'Confirm Password',
+                              labelStyle: TextStyle(
+                                fontSize: 20.0,
+                                color: Color(0xFF1A7D5A),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFF1A7D5A),
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFF1A7D5A),
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    showConfirmPassword = !showConfirmPassword;
+                                  });
+                                },
+                                icon: Icon(
+                                  showConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                                  color: Color(0xFF1A7D5A),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                        if (currentScreen == CurrentScreen.SignUp)
+                          SizedBox(height: 16.0),
+                        if (currentScreen == CurrentScreen.SignUp)
+                          Container(
+                            width: double.infinity, // Make the button span the full width
+                            padding: EdgeInsets.symmetric(horizontal: 0.0), // Add horizontal padding
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Handle login logic here
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF1A7D5A),
+                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                ),
+                              ),
+                              child: Text(
+                                'SIGN UP',
+                                style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                        if (currentScreen == CurrentScreen.SignUp)
+                          SizedBox(height: 26.0),
+
+
+                        if (currentScreen == CurrentScreen.SignUp)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Have already an account? ",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Color(0xFF1A7D5A),
+                                ),
+                              ),
+
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    currentScreen = CurrentScreen.Login;
+                                  });
+                                },
+
+                                child: Text(
+                                  "Login here",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: Color(0xFF1A7D5A),
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                    
+                    
+                        if (currentScreen == CurrentScreen.SignUp)
+                          SizedBox(height: 16.0),
+                        if (currentScreen == CurrentScreen.SignUp)
+                          
+                          Container(
+                            height: 1, // Độ cao của đường thẳng
+                            color: Color(0xFF1A7D5A), // Màu của đường thẳng
+                            margin: EdgeInsets.only(top: 5), // Khoảng cách từ đường thẳng đến ô nhập liệu
+                          ),
+
+
+                         if (currentScreen == CurrentScreen.SignUp)
+                          SizedBox(height: 16.0),
+                        if (currentScreen == CurrentScreen.SignUp)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/facebook.png', // Thay đổi đường dẫn đến biểu tượng Facebook
+                                height: 50,
+                                width: 50,
+                              ),
+                              SizedBox(width: 30), // Khoảng cách giữa các biểu tượng
+                              Image.asset(
+                                'assets/images/google.png', // Thay đổi đường dẫn đến biểu tượng Google
+                                height: 50,
+                                width: 50,
+                              ),
+                            ],
+                          ),
+                    
+                    
+                    
+                          if (currentScreen == CurrentScreen.SignUp)
+                          SizedBox(height: 16.0),
+                          if (currentScreen == CurrentScreen.SignUp)
+                          Text(
+                            'or use your email account',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Color(0xFF1A7D5A),
+                            ),
+                          ),
+
+
+
+
+
+                      
+                      ],
                     ),
-                  ],
-                ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
