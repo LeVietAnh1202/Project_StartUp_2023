@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:app_startup/firebase_options.dart';
 import 'package:app_startup/main.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class FirebaseApi {
     await _firebaseMessaging.requestPermission();
     final fcmToken = await _firebaseMessaging.getToken();
     print('Token: $fcmToken');
+    FirebaseDatabase.instance.ref().child('ListToken/fcm_token').set(fcmToken);
     FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
   }
 
