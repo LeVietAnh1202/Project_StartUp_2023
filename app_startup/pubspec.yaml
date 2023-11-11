@@ -41,7 +41,7 @@ dependencies:
   firebase_database: ^10.2.5
   firebase_messaging: ^14.6.7
   firebase_analytics: ^10.4.5
-  flutter_local_notifications: ^15.1.1
+  flutter_local_notifications: ^16.1.0
   intl: ^0.18.1
   percent_indicator: ^4.2.3
   url_strategy: ^0.2.0
@@ -79,6 +79,7 @@ flutter:
     - assets/images/bed-room-3.jfif
     - assets/images/Bo-giam-sat.jpg
     - assets/images/o-cam.webp
+    - assets/images/o-cam.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

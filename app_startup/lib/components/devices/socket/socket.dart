@@ -113,7 +113,7 @@ class SocketPageState extends State<SocketPage> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/images/o-cam.webp',
+                          'assets/images/o-cam.jpg',
                         )),
                   )),
               Flexible(

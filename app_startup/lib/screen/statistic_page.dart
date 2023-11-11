@@ -3,7 +3,6 @@ import 'package:app_startup/components/segment_control/segment_control.dart';
 import 'package:app_startup/constants/color_app.dart';
 import 'package:app_startup/constants/string_app.dart';
 import 'package:app_startup/models/data_line_chart/data.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -31,41 +30,36 @@ class StatisticPageState extends State<StatisticPage> {
     '1yr'
   ];
   List<double>? data;
+  double lastMonthPercen = 112 / 200;
+  double thisMonthPercen = 50 / 200;
 
   @override
   void initState() {
     super.initState();
     segmentControlIndex = widget.initialSegmentControlIndex;
-    data = _setData();
+    initData();
   }
 
-  void _setSegmentControlIndex(int index) async {
+  void initData() async {
+    data = await _setData();
+  }
+
+  void _setSegmentControlIndex(int index)  {
     setState(() {
       segmentControlIndex = index;
-      data = _setData();
+      initData();
     });
   }
 
-  List<double>? _setData() {
+  Future<List<double>?> _setData() async {
     switch (contentListSegmentControl[segmentControlIndex]) {
       case fifteenMinutes:
-        // DateTime _selectedDate = DateTime.now();
-        // TimeOfDay _selectedTime = TimeOfDay.now();
-        // List<double> temp =  [];
-        // String time = 'ESP8266/Monitor1/History/${DateTime.now().year}/${DateTime.now().month}/${DateTime.now().day}/${DateTime.now().hour}';
-        // print('ESP8266/Monitor1/History/${DateTime.now().year}/${DateTime.now().month}/${DateTime.now().day}/${DateTime.now().hour}/${DateTime.now().minute}');
-        // // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        // //     content: Text(time),
-        // // ));
-        // for (int i = 0; i < 15; i++) {
-        //   DatabaseReference _timeRef =  FirebaseDatabase.instance.ref().child('$time/${DateTime.now().minute - i}');
-
-        //   DataSnapshot databaseEvent = await _timeRef.get();
-        //   double value = databaseEvent.value as double;
-        //   temp.add(value);
-        // }
-        // return temp;
+        List<double> p = await GetDataFromFirebase().fetchData();
+        print('p: ');
+        print(p);
+        // return p;
         return fifteenMinutesData;
+        // return GetDataFromFirebase().getFifteenMinutesData();
       case thirtyMinutes:
         return thirtyMinutesData;
       case oneHour:
@@ -126,7 +120,7 @@ class StatisticPageState extends State<StatisticPage> {
                             Text('Today'.toUpperCase(), style: TextStyle(fontWeight: FontWeight.w500, color: darkText50)),
                             const SizedBox(height: 5,),
                             const Text(
-                              '10.0',
+                              '3.0',
                               style: TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
@@ -148,8 +142,8 @@ class StatisticPageState extends State<StatisticPage> {
                       animation: true,
                       lineHeight: 20.0,
                       animationDuration: 2500,
-                      percent: 0.8,
-                      center: const Text("112 kWh", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, letterSpacing: 0.6),),
+                      percent: thisMonthPercen,
+                      center: const Text("50 kWh", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, letterSpacing: 0.6),),
                       barRadius: const Radius.circular(10.0),
                       progressColor: buttonSegmentControl1.withOpacity(1),
                     ),
@@ -166,7 +160,7 @@ class StatisticPageState extends State<StatisticPage> {
                       animation: true,
                       lineHeight: 20.0,
                       animationDuration: 2500,
-                      percent: 0.8,
+                      percent: lastMonthPercen,
                       center: const Text("112 kWh", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, letterSpacing: 0.6),),
                       // linearStrokeCap: LinearStrokeCap.roundAll,
                       barRadius: const Radius.circular(10.0),

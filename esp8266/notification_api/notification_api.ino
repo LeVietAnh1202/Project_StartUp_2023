@@ -53,7 +53,9 @@ void setup() {
 
 void loop() {
   //Send an HTTP POST request every 10 minutes
-  if ((millis() - lastTime) > timerDelay) {
+//  if ((millis() - lastTime) > timerDelay) {
+  if (digitalRead(D4) == 0) {
+    while (digitalRead(D4) == 0);
     //Check WiFi connection status
     if(WiFi.status()== WL_CONNECTED){
       WiFiClientSecure client;
@@ -86,7 +88,9 @@ void loop() {
       // If you need an HTTP request with a content type: application/json, use the following:
         https.addHeader("Content-Type", "application/json");
 //        int httpResponseCode = https.POST("{\"name\": \"Nguyễn Văn Linh\",\"age\": 22,\"position\": \"Trưởng phòng kinh doanh\"}");
-          int httpResponseCode = https.POST("{\"fcm_token\": \"cEETQ2o-SxSYhN0qZsZumK:APA91bEbWHzii8PwOHuKHIFY1-PkptFdBQ_NckOCTYAw3upkd9ufzNY9TJ5TrpMd15395paRTroYDLChvslVMJTDiz0-1-WUjhY7N7wuFd0Mvzxv7ygHks7sRWtxy8InpROYdmKHZBSV\"}");
+
+int httpResponseCode = https.POST("{\"fcm_token\": \"dbzR0ayBT2Guzp3u3sginN:APA91bHYe_4BXRfbB9mRT9GJNLupr6M-X23i1AhvHhgg93bMSg6UzwpijIKQ063Op5JrEO3LMIOgaGg4Lkd367GuLLSNNTTUl5btWum8q8CH_AxPBkVbxZcHMbytqIBqU93xWyhGC_0x\"}");
+//          int httpResponseCode = https.POST("{\"fcm_token\": \"cEETQ2o-SxSYhN0qZsZumK:APA91bEbWHzii8PwOHuKHIFY1-PkptFdBQ_NckOCTYAw3upkd9ufzNY9TJ5TrpMd15395paRTroYDLChvslVMJTDiz0-1-WUjhY7N7wuFd0Mvzxv7ygHks7sRWtxy8InpROYdmKHZBSV\"}");
 
       // Get API
 //      int httpResponseCode = https.GET();
@@ -112,4 +116,5 @@ void loop() {
     }
     lastTime = millis();
   }
+//  }
 }

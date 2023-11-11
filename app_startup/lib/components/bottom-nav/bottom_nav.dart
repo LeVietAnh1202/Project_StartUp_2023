@@ -1,7 +1,9 @@
 import 'package:app_startup/constants/color_app.dart';
+import 'package:app_startup/services/notifi_service.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:highlight_text/highlight_text.dart';
+import 'package:intl/intl.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:avatar_glow/avatar_glow.dart';
 
@@ -143,7 +145,10 @@ class _FloatingMicButtonState extends State<FloatingMicButton> {
       onPressed: () {
         showModalBottomSheet<void>(
           context: context,
-          builder: (context) => BottomSheetOfMicButton(speech: _speech, speechEnabled: _speechEnabled,),
+          builder: (context) => BottomSheetOfMicButton(
+            speech: _speech,
+            speechEnabled: _speechEnabled,
+          ),
         );
       },
       child: const Icon(Icons.mic_none),
@@ -154,6 +159,12 @@ class _FloatingMicButtonState extends State<FloatingMicButton> {
     _speechEnabled = await _speech.initialize(
       onStatus: (val) async {
         print('onStatus: $val');
+        setState(() {});
+        if (_speech.isListening) {
+          print('is listening 1');
+        } else if (_speech.isNotListening) {
+          print('is not listening 1');
+        }
         // setState(() {
         //   if (_speech.isNotListening && _confidence > 0) {
         //     Navigator.pop(context);
@@ -196,14 +207,31 @@ class BottomSheetOfMicButton extends StatefulWidget {
 class _BottomSheetOfMicButtonState extends State<BottomSheetOfMicButton> {
   bool _isListening = false;
   String _text = 'Press the button and start speaking';
-  String _wordSpoken = '';
+  // String _wordSpoken = 'Đang lắng nghe ...';
+  String _wordSpoken = 'Listening ...';
   double _confidence = 0.0;
   bool isListened = false;
   bool _speechEnabled = false;
 
   @override
   void initState() {
-    _startListening();
+    if (widget.speech.isAvailable) {
+      print('isAvailable');
+    } else {
+      print('isNotAvailable');
+    }
+    setState(() {});
+    // _startListening();
+    widget.speech.listen(
+      onResult: _onSpeechResult,
+      listenFor: const Duration(seconds: 5),
+    );
+    print('setState start');
+    if (widget.speech.isListening) {
+      print('is listening');
+    } else if (widget.speech.isNotListening) {
+      print('is not listening');
+    }
   }
 
   // @override
@@ -244,11 +272,11 @@ class _BottomSheetOfMicButtonState extends State<BottomSheetOfMicButton> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(widget.speech.isListening
-                ? "listening..."
-                : _speechEnabled
-                    ? 'Tap the microphone to start listening...'
-                    : 'Speech is not available'),
+            // Text(widget.speech.isListening
+            //     ? "listening..."
+            //     : _speechEnabled
+            //         ? 'Tap the microphone to start listening...'
+            //         : 'Speech is not available'),
             Text(_wordSpoken),
             // ElevatedButton(
             //   child: const Text('Close BottomSheet'),
@@ -274,7 +302,23 @@ class _BottomSheetOfMicButtonState extends State<BottomSheetOfMicButton> {
                   //   // _speech.stop();
                   // });
                   // if (mounted) {
+                  if (mounted) {
+                    widget.speech.stop();
+                  }
                   Navigator.of(context).pop();
+                  DatabaseReference _isOnRef;
+                  String isOnPath = 'Flutter/Monitor1/isOn';
+                  switch (_wordSpoken) {
+                    case 'bật hệ thống':
+                    case 'turn on':
+                      FirebaseDatabase.instance.ref().child(isOnPath).set(1);
+                      break;
+                    case 'tắt hệ thống':
+                    case 'turn off':
+                      FirebaseDatabase.instance.ref().child(isOnPath).set(0);
+                      break;
+                  }
+
                   // }
                 },
                 child: const Icon(Icons.mic),
@@ -384,23 +428,26 @@ class _BottomSheetOfMicButtonState extends State<BottomSheetOfMicButton> {
   // }
 
   void _startListening() async {
+    setState(() {});
     await widget.speech.listen(
       onResult: _onSpeechResult,
       listenFor: const Duration(seconds: 5),
     );
     setState(() {});
-    print('setState start');
-    if (widget.speech.isNotListening && _confidence > 0) {
-      _stopListening();
-      print('stop');
-    }
+
+    // if (widget.speech.isNotListening && _confidence > 0) {
+    //   _stopListening();
+    //   print('stop');
+    // }
   }
 
   void _onSpeechResult(result) {
-    setState(() {
-      _wordSpoken = '${result.recognizedWords}';
-      _confidence = result.confidence;
-    });
+    if (mounted) {
+      setState(() {
+        _wordSpoken = '${result.recognizedWords}';
+        _confidence = result.confidence;
+      });
+    }
   }
 
   void _stopListening() async {

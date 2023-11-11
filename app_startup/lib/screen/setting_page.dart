@@ -89,7 +89,7 @@ class LineChartStatisticState extends State<LineChartStatistic> {
                     height: 10,
                   ),
                   CardTimer(
-                      imgPath: 'assets/images/o-cam.webp', deviceName: 'Socket')
+                      imgPath: 'assets/images/o-cam.jpg', deviceName: 'Socket')
                 ],
               ),
             ),
